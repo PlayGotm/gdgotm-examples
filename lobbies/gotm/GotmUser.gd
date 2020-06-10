@@ -20,31 +20,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-class_name GotmFile
+class_name GotmUser
 #warnings-disable
 
-# A simple in-memory file descriptor used by 'Gotm.pick_files' and 
-# 'Gotm.files_dropped'.
+# Holds information about a GotM user.
 
 
 
 ##############################################################
 # PROPERTIES
 ##############################################################
-# File name.
-var name: String
-
-# File data.
-var data: PoolByteArray
-
-# Last time the file was modified in unix time (seconds since epoch).
-var modified_time: int
+# The address of the user in a lobby context.
+# Is only populated in a lobby context, for example
+# 'GotmLobby.peers', 'GotmLobby.host' and 'GotmLobby.me'.
+var address: String = ""
 
 
 
 ##############################################################
-# METHODS
+# PRIVATE
 ##############################################################
-# Save the file to the browser's download folder.
-func download() -> void:
-	pass
+var _impl: Dictionary = {}

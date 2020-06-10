@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://gotm/GotmLobbyFetch.gd"
 }, {
 "base": "Reference",
+"class": "GotmUser",
+"language": "GDScript",
+"path": "res://gotm/GotmUser.gd"
+}, {
+"base": "Reference",
 "class": "_GotmDebugImpl",
 "language": "GDScript",
 "path": "res://gotm/_impl/_GotmDebugImpl.gd"
@@ -44,6 +49,7 @@ _global_script_class_icons={
 "GotmFile": "",
 "GotmLobby": "",
 "GotmLobbyFetch": "",
+"GotmUser": "",
 "_GotmDebugImpl": "",
 "_GotmImpl": ""
 }
@@ -51,9 +57,9 @@ _global_script_class_icons={
 [application]
 
 config/name="Multiplayer Lobbies Example (GotM)"
-config/description="A multiplayer lobby demo using GotM's GDScript API."
 run/main_scene="res://Menu.tscn"
 config/icon="res://icon.png"
+config/description="A multiplayer lobby demo using GotM's GDScript API."
 
 [autoload]
 

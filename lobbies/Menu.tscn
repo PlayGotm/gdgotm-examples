@@ -1,15 +1,16 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/Menu.gd" type="Script" id=1]
 [ext_resource path="res://resources/Map.svg" type="Texture" id=2]
 [ext_resource path="res://resources/Pixel.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Button.tscn" type="PackedScene" id=4]
-[ext_resource path="res://resources/Speed.svg" type="Texture" id=5]
-[ext_resource path="res://resources/Sort.svg" type="Texture" id=6]
-[ext_resource path="res://resources/ButtonFilled.tres" type="StyleBox" id=7]
-[ext_resource path="res://resources/Refresh.svg" type="Texture" id=8]
-[ext_resource path="res://scripts/Spinner.gd" type="Script" id=9]
-[ext_resource path="res://LobbyEntry.tscn" type="PackedScene" id=10]
+[ext_resource path="res://resources/ButtonUnfilled.tres" type="StyleBox" id=5]
+[ext_resource path="res://resources/ButtonFilled.tres" type="StyleBox" id=6]
+[ext_resource path="res://resources/Speed.svg" type="Texture" id=7]
+[ext_resource path="res://resources/Sort.svg" type="Texture" id=8]
+[ext_resource path="res://resources/Refresh.svg" type="Texture" id=9]
+[ext_resource path="res://scripts/Spinner.gd" type="Script" id=10]
+[ext_resource path="res://LobbyEntry.tscn" type="PackedScene" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -119,6 +120,11 @@ margin_top = 45.0
 margin_right = 104.854
 margin_bottom = 105.0
 text = "Classic"
+filled = false
+texture = null
+text_scale = 1.0
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
 
 [node name="Wall" parent="Navigator/Options/Map" instance=ExtResource( 4 )]
 margin_left = 155.0
@@ -126,6 +132,11 @@ margin_top = 42.7839
 margin_right = 265.0
 margin_bottom = 102.784
 text = "Wall"
+filled = false
+texture = null
+text_scale = 1.0
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
 
 [node name="Difficulty" type="Control" parent="Navigator/Options"]
 margin_left = 10.0
@@ -137,7 +148,7 @@ margin_bottom = 167.702
 modulate = Color( 0, 0, 0, 1 )
 margin_right = 35.0
 margin_bottom = 35.0
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 expand = true
 
 [node name="Label" type="Label" parent="Navigator/Options/Difficulty"]
@@ -154,6 +165,11 @@ margin_top = 45.0
 margin_right = 110.321
 margin_bottom = 105.0
 text = "Easy"
+filled = false
+texture = null
+text_scale = 1.0
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
 
 [node name="Medium" parent="Navigator/Options/Difficulty" instance=ExtResource( 4 )]
 margin_left = 155.0
@@ -161,6 +177,11 @@ margin_top = 45.0
 margin_right = 265.0
 margin_bottom = 105.0
 text = "Medium"
+filled = false
+texture = null
+text_scale = 1.0
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
 
 [node name="Hard" parent="Navigator/Options/Difficulty" instance=ExtResource( 4 )]
 margin_left = 311.83
@@ -168,6 +189,11 @@ margin_top = 45.0
 margin_right = 421.83
 margin_bottom = 105.0
 text = "Hard"
+filled = false
+texture = null
+text_scale = 1.0
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
 
 [node name="Sort" type="Control" parent="Navigator/Options"]
 margin_left = 10.0
@@ -179,7 +205,7 @@ margin_bottom = 282.064
 modulate = Color( 0, 0, 0, 1 )
 margin_right = 35.0
 margin_bottom = 35.0
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 expand = true
 
 [node name="Label" type="Label" parent="Navigator/Options/Sort"]
@@ -195,9 +221,13 @@ margin_left = -6.57004
 margin_top = 45.0
 margin_right = 103.43
 margin_bottom = 105.0
-custom_styles/panel = ExtResource( 7 )
+custom_styles/panel = ExtResource( 6 )
 text = "Age"
 filled = true
+texture = null
+text_scale = 1.0
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
 
 [node name="SortDifficulty" parent="Navigator/Options/Sort" instance=ExtResource( 4 )]
 margin_left = 155.0
@@ -205,17 +235,24 @@ margin_top = 45.0
 margin_right = 281.0
 margin_bottom = 105.0
 text = "Difficulty"
+filled = false
+texture = null
+text_scale = 1.0
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
 
 [node name="SortDescending" parent="Navigator/Options/Sort" instance=ExtResource( 4 )]
 margin_left = 330.833
 margin_top = 45.0
 margin_right = 350.833
 margin_bottom = 105.0
-custom_styles/panel = ExtResource( 7 )
+custom_styles/panel = ExtResource( 6 )
 text = ""
 filled = true
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 text_scale = 0.621
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
 
 [node name="SortAscending" parent="Navigator/Options/Sort" instance=ExtResource( 4 )]
 margin_left = 398.213
@@ -225,8 +262,11 @@ margin_bottom = 164.834
 rect_rotation = 180.0
 rect_scale = Vector2( -1, 1 )
 text = ""
-texture = ExtResource( 6 )
+filled = false
+texture = ExtResource( 8 )
 text_scale = 0.621
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
 
 [node name="SearchPanel" type="Panel" parent="Navigator/Options"]
 anchor_top = 1.0
@@ -267,9 +307,13 @@ margin_left = -139.0
 margin_top = -28.0
 margin_right = 139.0
 margin_bottom = 28.0
-custom_styles/panel = ExtResource( 7 )
+custom_styles/panel = ExtResource( 6 )
 text = "Create game"
 filled = true
+texture = null
+text_scale = 1.0
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
 
 [node name="Lobbies" type="Panel" parent="Navigator"]
 anchor_right = 1.0
@@ -289,10 +333,10 @@ margin_top = -48.0
 margin_right = 48.0
 margin_bottom = 48.0
 rect_pivot_offset = Vector2( 48, 48 )
-texture = ExtResource( 8 )
-script = ExtResource( 9 )
+texture = ExtResource( 9 )
+script = ExtResource( 10 )
 
-[node name="LobbyTemplate" parent="Navigator/Lobbies" instance=ExtResource( 10 )]
+[node name="LobbyTemplate" parent="Navigator/Lobbies" instance=ExtResource( 11 )]
 
 [node name="List" type="Control" parent="Navigator/Lobbies"]
 anchor_right = 1.0
@@ -316,7 +360,11 @@ margin_top = -31.5
 margin_right = 80.0
 margin_bottom = 28.5
 text = "<<"
-texture = ExtResource( 8 )
+filled = false
+texture = ExtResource( 9 )
+text_scale = 1.0
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
 
 [node name="First" parent="Navigator/Page" instance=ExtResource( 4 )]
 anchor_left = 1.0
@@ -327,6 +375,11 @@ margin_top = -31.5
 margin_right = -288.0
 margin_bottom = 28.5
 text = "<<"
+filled = false
+texture = null
+text_scale = 1.0
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
 
 [node name="Previous" parent="Navigator/Page" instance=ExtResource( 4 )]
 anchor_left = 1.0
@@ -337,6 +390,11 @@ margin_top = -31.5
 margin_right = -176.1
 margin_bottom = 28.5
 text = "<"
+filled = false
+texture = null
+text_scale = 1.0
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
 
 [node name="Page" type="Label" parent="Navigator/Page"]
 anchor_left = 1.0
@@ -362,6 +420,12 @@ margin_top = -32.357
 margin_right = -20.0
 margin_bottom = 27.643
 text = ">"
+filled = false
+texture = null
+text_scale = 1.0
+unfilled_stylebox = ExtResource( 5 )
+filled_stylebox = ExtResource( 6 )
+
 [connection signal="clicked" from="Navigator/Options/Map/Classic" to="." method="_on_Classic_clicked"]
 [connection signal="clicked" from="Navigator/Options/Map/Wall" to="." method="_on_Wall_clicked"]
 [connection signal="clicked" from="Navigator/Options/Difficulty/Easy" to="." method="_on_Easy_clicked"]

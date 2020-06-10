@@ -105,7 +105,9 @@ func _on_LobbyTemplate_selected(lobby):
 		print("Failed to connect to lobby '" + lobby.name + "'!")
 
 
-func _on_Classic_clicked(instance):
+
+
+func _on_Classic_clicked(instance):	
 	instance.filled = !instance.filled
 	if instance.filled:
 		$Navigator/Options/Map/Wall.filled = false

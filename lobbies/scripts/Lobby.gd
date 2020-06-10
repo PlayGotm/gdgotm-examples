@@ -6,6 +6,19 @@ onready var address = $Address
 onready var status_ok = $StatusOk
 onready var status_fail = $StatusFail
 
+func _on_Gotm_lobby_peer_joined(peer: GotmUser) -> void:
+	print("joined: ", peer._impl.id, " ", peer.address)
+	print("peers: ")
+	for peer in Gotm.lobby.peers:
+		print("  ", peer._impl.id, " ", peer.address)
+
+func _on_Gotm_lobby_peer_left(peer: GotmUser) -> void:
+	print("left: ", peer._impl.id, " ", peer.address)
+	print("peers: ")
+	for peer in Gotm.lobby.peers:
+		print("  ", peer._impl.id, " ", peer.address)
+	
+
 func _ready():
 	# Connect all the callbacks related to networking.
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -15,15 +28,17 @@ func _ready():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	
 	Gotm.connect("lobby_changed", self, "_on_Gotm_lobby_changed")
+	Gotm.lobby.connect("peer_joined", self, "_on_Gotm_lobby_peer_joined")
+	Gotm.lobby.connect("peer_left", self, "_on_Gotm_lobby_peer_left")
 	
-	if Gotm.lobby and Gotm.lobby.is_host():
-		_on_host_pressed()
-	else:
-		_on_join_pressed()
+	#if Gotm.lobby and Gotm.lobby.is_host():
+	#	_on_host_pressed()
+	#else:
+	#	_on_join_pressed()
 
 func _on_Gotm_lobby_changed():
 	if not Gotm.lobby:
-		get_tree().change_scene("res://Disconnected.tscn")
+		get_tree().change_scene("res://Menu.tscn")
 
 #### Network callbacks from SceneTree ####
 
@@ -98,4 +113,3 @@ func _on_CancelButton_pressed():
 	get_tree().set_network_peer(null)
 	if Gotm.lobby:
 		Gotm.lobby.leave()
-	get_tree().change_scene("res://Menu.tscn")

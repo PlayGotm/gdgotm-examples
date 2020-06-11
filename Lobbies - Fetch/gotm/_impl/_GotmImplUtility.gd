@@ -20,25 +20,29 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-class_name GotmUser
+class_name _GotmImplUtility
 #warnings-disable
 
-# Holds information about a GotM user.
+
+static func _fuzzy_compare(a, b, compare_less: bool) -> bool:
+	if typeof(a) == typeof(b):
+		return a < b if compare_less else a > b
+		
+		# GDScript doesn't handle comparison of different types very well.
+		# Abuse Array's min and max functions instead.
+		var m = [a, b].min() if compare_less else [a, b].max()
+		if m != null or a == null or b == null:
+			return m == a
+			  
+	# Array method failed. Go with strings instead.
+	a = String(a)
+	b = String(b)
+	return a < b if compare_less else a > b
 
 
-
-##############################################################
-# PROPERTIES
-##############################################################
-# These are all read-only.
-
-# The IP address of the user.
-# Is empty if you are not in the same lobby.
-var address: String = ""
+static func is_less(a, b) -> bool:
+	return _fuzzy_compare(a, b, true)
 
 
-
-##############################################################
-# PRIVATE
-##############################################################
-var _impl: Dictionary = {}
+static func is_greater(a, b) -> bool:
+	return _fuzzy_compare(a, b, false)

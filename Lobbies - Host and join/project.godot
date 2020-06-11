@@ -56,9 +56,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Lobbies - Host and join (GotM)"
+config/name="Lobbies - Host and join (gotm.io)"
 run/main_scene="res://Root.tscn"
-config/description="Host and join player-hosted lobbies for your multiplayer game using GotM's GDScript plugin."
+config/description="Host and join player-hosted lobbies for your multiplayer game using Gotm's GDScript plugin."
 
 [autoload]
 

@@ -56,10 +56,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Multiplayer Lobbies Example (GotM)"
+config/name="Lobbies - Fetch (gotm.io)"
 run/main_scene="res://Menu.tscn"
 config/icon="res://icon.png"
-config/description="A multiplayer lobby demo using GotM's GDScript API."
+config/description="Filter and sort lobbies using Gotm's GDScript API."
 
 [autoload]
 

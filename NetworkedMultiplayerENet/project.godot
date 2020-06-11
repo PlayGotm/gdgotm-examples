@@ -15,8 +15,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="NetworkedMultiplayerENet Example (GotM)"
+config/name="NetworkedMultiplayerENet (gotm.io)"
 run/main_scene="res://Root.tscn"
+config/description="Connect players without any plugins."
 
 [display]
 

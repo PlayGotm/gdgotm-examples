@@ -101,7 +101,10 @@ margin_right = 28.0
 margin_bottom = -13.0005
 rect_pivot_offset = Vector2( 28, 28 )
 custom_styles/panel = SubResource( 3 )
+text = "Text"
+filled = false
 texture = ExtResource( 7 )
+size = 0
 unfilled_stylebox = SubResource( 3 )
 filled_stylebox = SubResource( 4 )
 
@@ -130,6 +133,9 @@ margin_right = -18.0
 margin_bottom = 28.0
 custom_styles/panel = SubResource( 3 )
 text = "Host"
+filled = false
+texture = null
+size = 0
 unfilled_stylebox = SubResource( 3 )
 filled_stylebox = SubResource( 4 )
 

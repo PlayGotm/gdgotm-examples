@@ -30,12 +30,12 @@ func _player_connected(id):
 	_last_color = (_last_color + 1) % 8
 	rpc_id(id, "_set_color", _last_color)
 	for color in range(8):
-		rpc_id(id, "_init_canvas_color", $Game/Center/Canvas.get_used_cells_by_id(color), color)
+		rpc_id(id, "_init_canvas_color", $Canvas.get_used_cells_by_id(color), color)
 
 
 remotesync func _init_canvas_color(positions, color):
 	for position in positions:
-		$Game/Center/Canvas.set_cellv(position, color)
+		$Canvas.set_cellv(position, color)
 
 
 remotesync func _set_color(color):
@@ -63,14 +63,13 @@ remotesync func _rasterize_line(x0: int, y0: int, x1: int, y1: int, color: int) 
 			y0 += sy
 
 
-func _on_Game_gui_input(event):
+func _on_Background_gui_input(event):
 	if $Spinner.visible:
 		return
 	
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == BUTTON_MASK_LEFT:
 			_mouse_start = event.position
-	
 	elif event is InputEventMouseMotion:
 		if event.button_mask & BUTTON_MASK_LEFT:
 			var v0 = _mouse_start / $Canvas.scale
@@ -81,4 +80,3 @@ func _on_Game_gui_input(event):
 			var y1: int = int(v1.y)
 			rpc("_rasterize_line", x0, y0, x1, y1, _color)
 			_mouse_start = event.position
-			

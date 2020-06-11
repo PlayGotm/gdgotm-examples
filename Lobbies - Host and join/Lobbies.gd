@@ -1,5 +1,7 @@
 extends Control
 
+signal join_pressed(lobby)
+signal host_pressed(name)
 
 onready var _fetch = GotmLobbyFetch.new()
 
@@ -11,9 +13,8 @@ func _ready():
 
 
 func _on_LobbyEntry_selected(lobby):
-	var success = yield(lobby.join(), "completed")
-	if not success:
-		push_error("Failed to connect to lobby '" + lobby.name + "'!")
+	emit_signal("join_pressed", lobby)
+
 
 
 func _refresh():
@@ -39,6 +40,4 @@ func _on_Refresh_clicked(instance):
 
 
 func _on_Host_clicked(instance):
-	Gotm.host_lobby()
-	Gotm.lobby.hidden = false
-	Gotm.lobby.name = $Host/Name.get_text()
+	emit_signal("host_pressed", $Host/Name.get_text())

@@ -134,10 +134,7 @@ func _on_Difficulty_selection_changed(text):
 
 
 func _on_SortProperty_selection_changed(text):
-	text = text.to_lower()
-	if text == "age":
-		text = "created"
-	_fetch.sort_property = text
+	_fetch.sort_property = text.to_lower()
 	reset()
 
 

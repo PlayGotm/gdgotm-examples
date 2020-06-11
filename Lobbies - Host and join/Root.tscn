@@ -14,3 +14,5 @@ script = ExtResource( 1 )
 [node name="Game" parent="." instance=ExtResource( 3 )]
 visible = false
 
+[connection signal="host_pressed" from="Lobbies" to="." method="_on_Lobbies_host_pressed"]
+[connection signal="join_pressed" from="Lobbies" to="." method="_on_Lobbies_join_pressed"]

@@ -135,6 +135,7 @@ static func _initialize(GotmLobbyT, GotmUserT) -> void:
 	}
 	g._impl.rng.randomize()
 	g.user._impl.id = _generate_id()
+	g.user.address = "localhost"
 
 
 static func _process() -> void:

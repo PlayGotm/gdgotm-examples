@@ -44,7 +44,10 @@ margin_top = -37.0
 margin_right = 115.5
 margin_bottom = 37.0
 text = "Host"
+filled = false
+texture = null
 size = 1
+group = 0
 
 [node name="Join" parent="Menu" instance=ExtResource( 3 )]
 anchor_left = 0.5
@@ -56,7 +59,10 @@ margin_top = 60.0
 margin_right = 115.5
 margin_bottom = 134.0
 text = "Join"
+filled = false
+texture = null
 size = 1
+group = 0
 
 [node name="Footer" type="Label" parent="Menu"]
 modulate = Color( 0, 0, 0, 1 )

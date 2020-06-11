@@ -173,9 +173,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Sort"
 
 [node name="SortProperty" parent="Options/Sort" instance=ExtResource( 5 )]
-editor/display_folded = true
 allow_empty = false
-selected_index = 0
 
 [node name="Age" parent="Options/Sort/SortProperty" instance=ExtResource( 6 )]
 margin_left = 145.0
@@ -183,7 +181,7 @@ margin_top = -10.0
 margin_right = 250.0
 margin_bottom = 50.0
 custom_styles/panel = ExtResource( 12 )
-text = "Age"
+text = "Created"
 filled = true
 group = 1
 
@@ -197,9 +195,7 @@ text = "Difficulty"
 group = 3
 
 [node name="SortDirection" parent="Options/Sort" instance=ExtResource( 5 )]
-editor/display_folded = true
 allow_empty = false
-selected_index = 0
 
 [node name="Descending" parent="Options/Sort/SortDirection" instance=ExtResource( 6 )]
 margin_left = 447.183
@@ -207,7 +203,7 @@ margin_top = -10.0
 margin_right = 467.183
 margin_bottom = 50.0004
 custom_styles/panel = ExtResource( 12 )
-text = "Ascending"
+text = "Descending"
 filled = true
 texture = ExtResource( 11 )
 group = 1
@@ -221,7 +217,7 @@ rect_rotation = 180.0
 rect_scale = Vector2( -1, 1 )
 rect_pivot_offset = Vector2( 30, 30 )
 custom_styles/panel = ExtResource( 8 )
-text = "Descending"
+text = "Ascending"
 texture = ExtResource( 11 )
 group = 3
 
@@ -323,6 +319,18 @@ margin_top = -32.357
 margin_right = -20.0
 margin_bottom = 27.643
 text = ">"
+
+[node name="Footer" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -38.1664
+margin_bottom = -1.16638
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "gotm.io"
+align = 1
+valign = 1
 
 [connection signal="selection_changed" from="Options/Map/Map" to="." method="_on_Map_selection_changed"]
 [connection signal="selection_changed" from="Options/Difficulty/Difficulty" to="." method="_on_Difficulty_selection_changed"]

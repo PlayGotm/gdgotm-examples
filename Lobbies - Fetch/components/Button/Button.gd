@@ -67,8 +67,6 @@ func set_texture(new_texture):
 
 func set_filled(new_filled):
 	filled = new_filled
-
-	
 	if filled:
 		$Label.modulate = Color.white
 		$Texture.modulate = Color.white

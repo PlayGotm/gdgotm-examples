@@ -1,0 +1,335 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Root.gd" type="Script" id=1]
+[ext_resource path="res://components/Card/Card.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/Map.svg" type="Texture" id=3]
+[ext_resource path="res://resources/fonts/RobotoLight-24px.tres" type="DynamicFont" id=4]
+[ext_resource path="res://components/ExclusiveButton/ExclusiveButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://components/Button/Button.tscn" type="PackedScene" id=6]
+[ext_resource path="res://components/Button/UnfilledLeft.tres" type="StyleBox" id=7]
+[ext_resource path="res://components/Button/UnfilledRight.tres" type="StyleBox" id=8]
+[ext_resource path="res://resources/Speed.svg" type="Texture" id=9]
+[ext_resource path="res://components/Button/UnfilledCenter.tres" type="StyleBox" id=10]
+[ext_resource path="res://resources/Sort.svg" type="Texture" id=11]
+[ext_resource path="res://components/Button/FilledLeft.tres" type="StyleBox" id=12]
+[ext_resource path="res://components/TextInput/TextInput.tscn" type="PackedScene" id=13]
+[ext_resource path="res://components/Spinner/Spinner.tscn" type="PackedScene" id=14]
+[ext_resource path="res://components/Lobby/Lobby.tscn" type="PackedScene" id=15]
+[ext_resource path="res://resources/Refresh.svg" type="Texture" id=16]
+[ext_resource path="res://resources/fonts/RobotoLight-32px.tres" type="DynamicFont" id=17]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="Root" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.890196, 0.890196, 0.890196, 1 )
+
+[node name="Options" parent="." instance=ExtResource( 2 )]
+margin_bottom = -330.0
+
+[node name="Map" type="Control" parent="Options"]
+margin_left = 15.0
+margin_top = 15.895
+margin_right = 55.0
+margin_bottom = 55.895
+
+[node name="Icon" type="TextureRect" parent="Options/Map"]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 35.0
+margin_bottom = 35.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Label" type="Label" parent="Options/Map"]
+margin_left = 35.0
+margin_top = 5.54017
+margin_right = 95.0
+margin_bottom = 43.5402
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Map"
+
+[node name="Map" parent="Options/Map" instance=ExtResource( 5 )]
+editor/display_folded = true
+margin_left = -15.0
+margin_top = -15.895
+margin_right = 25.0
+margin_bottom = 24.105
+
+[node name="Classic" parent="Options/Map/Map" instance=ExtResource( 6 )]
+margin_left = 160.0
+margin_top = 9.76391
+margin_right = 265.0
+margin_bottom = 69.7639
+custom_styles/panel = ExtResource( 7 )
+text = "Classic"
+group = 1
+
+[node name="Wall" parent="Options/Map/Map" instance=ExtResource( 6 )]
+margin_left = 302.0
+margin_top = 9.76391
+margin_right = 407.0
+margin_bottom = 69.7644
+custom_styles/panel = ExtResource( 8 )
+text = "Wall"
+group = 3
+
+[node name="Difficulty" type="Control" parent="Options"]
+margin_left = 15.0
+margin_top = 91.3342
+margin_right = 55.0
+margin_bottom = 131.334
+
+[node name="Icon" type="TextureRect" parent="Options/Difficulty"]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 35.0
+margin_bottom = 35.0
+texture = ExtResource( 9 )
+expand = true
+
+[node name="Label" type="Label" parent="Options/Difficulty"]
+margin_left = 35.0
+margin_top = 4.43213
+margin_right = 176.0
+margin_bottom = 42.4321
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Difficulty"
+
+[node name="Difficulty" parent="Options/Difficulty" instance=ExtResource( 5 )]
+editor/display_folded = true
+
+[node name="Easy" parent="Options/Difficulty/Difficulty" instance=ExtResource( 6 )]
+margin_left = 145.0
+margin_top = -10.0
+margin_right = 250.0
+margin_bottom = 50.0
+custom_styles/panel = ExtResource( 7 )
+text = "Easy"
+group = 1
+
+[node name="Medium" parent="Options/Difficulty/Difficulty" instance=ExtResource( 6 )]
+margin_left = 287.0
+margin_top = -10.0
+margin_right = 392.0
+margin_bottom = 50.0
+custom_styles/panel = ExtResource( 10 )
+text = "Medium"
+group = 2
+
+[node name="Hard" parent="Options/Difficulty/Difficulty" instance=ExtResource( 6 )]
+margin_left = 429.0
+margin_top = -10.0
+margin_right = 533.999
+margin_bottom = 50.0002
+custom_styles/panel = ExtResource( 8 )
+text = "Hard"
+group = 3
+
+[node name="Sort" type="Control" parent="Options"]
+margin_left = 14.2622
+margin_top = 164.686
+margin_right = 54.2622
+margin_bottom = 204.686
+
+[node name="Icon" type="TextureRect" parent="Options/Sort"]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 35.0
+margin_bottom = 35.0
+texture = ExtResource( 11 )
+expand = true
+
+[node name="Label" type="Label" parent="Options/Sort"]
+margin_left = 35.0
+margin_top = 5.54019
+margin_right = 170.0
+margin_bottom = 43.5402
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Sort"
+
+[node name="SortProperty" parent="Options/Sort" instance=ExtResource( 5 )]
+editor/display_folded = true
+allow_empty = false
+selected_index = 0
+
+[node name="Age" parent="Options/Sort/SortProperty" instance=ExtResource( 6 )]
+margin_left = 145.0
+margin_top = -10.0
+margin_right = 250.0
+margin_bottom = 50.0
+custom_styles/panel = ExtResource( 12 )
+text = "Age"
+filled = true
+group = 1
+
+[node name="Difficulty" parent="Options/Sort/SortProperty" instance=ExtResource( 6 )]
+margin_left = 287.0
+margin_top = -10.0
+margin_right = 392.0
+margin_bottom = 50.0
+custom_styles/panel = ExtResource( 8 )
+text = "Difficulty"
+group = 3
+
+[node name="SortDirection" parent="Options/Sort" instance=ExtResource( 5 )]
+editor/display_folded = true
+allow_empty = false
+selected_index = 0
+
+[node name="Descending" parent="Options/Sort/SortDirection" instance=ExtResource( 6 )]
+margin_left = 447.183
+margin_top = -10.0
+margin_right = 467.183
+margin_bottom = 50.0004
+custom_styles/panel = ExtResource( 12 )
+text = "Ascending"
+filled = true
+texture = ExtResource( 11 )
+group = 1
+
+[node name="Ascending" parent="Options/Sort/SortDirection" instance=ExtResource( 6 )]
+margin_left = 506.378
+margin_top = -10.0
+margin_right = 526.378
+margin_bottom = 50.0
+rect_rotation = 180.0
+rect_scale = Vector2( -1, 1 )
+rect_pivot_offset = Vector2( 30, 30 )
+custom_styles/panel = ExtResource( 8 )
+text = "Descending"
+texture = ExtResource( 11 )
+group = 3
+
+[node name="Search" parent="Options" instance=ExtResource( 13 )]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -68.0
+margin_right = -10.0
+margin_bottom = -10.0
+placeholder_text = "Search by name..."
+
+[node name="Lobbies" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 319.0
+margin_right = -10.0
+margin_bottom = -104.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Spinner" parent="Lobbies" instance=ExtResource( 14 )]
+
+[node name="LobbyTemplate" parent="Lobbies" instance=ExtResource( 15 )]
+margin_left = 11.0
+margin_top = 12.0
+margin_right = -11.0
+margin_bottom = 45.0
+
+[node name="List" type="Control" parent="Lobbies"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.56827
+margin_right = 1.56827
+
+[node name="Page" type="Panel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -95.0
+margin_right = -10.0
+margin_bottom = -10.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Refresh" parent="Page" instance=ExtResource( 6 )]
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -31.5
+margin_right = 80.0
+margin_bottom = 28.5
+text = "<<"
+texture = ExtResource( 16 )
+
+[node name="First" parent="Page" instance=ExtResource( 6 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -348.0
+margin_top = -31.5
+margin_right = -288.0
+margin_bottom = 28.5
+text = "<<"
+
+[node name="Previous" parent="Page" instance=ExtResource( 6 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -236.1
+margin_top = -31.5
+margin_right = -176.1
+margin_bottom = 28.5
+text = "<"
+
+[node name="Page" type="Label" parent="Page"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -151.003
+margin_top = -19.9328
+margin_right = -111.003
+margin_bottom = 18.0672
+custom_fonts/font = ExtResource( 17 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Next" parent="Page" instance=ExtResource( 6 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -32.357
+margin_right = -20.0
+margin_bottom = 27.643
+text = ">"
+
+[connection signal="selection_changed" from="Options/Map/Map" to="." method="_on_Map_selection_changed"]
+[connection signal="selection_changed" from="Options/Difficulty/Difficulty" to="." method="_on_Difficulty_selection_changed"]
+[connection signal="selection_changed" from="Options/Sort/SortProperty" to="." method="_on_SortProperty_selection_changed"]
+[connection signal="selection_changed" from="Options/Sort/SortDirection" to="." method="_on_SortDirection_selection_changed"]
+[connection signal="text_changed" from="Options/Search" to="." method="_on_Search_text_changed"]
+[connection signal="clicked" from="Page/Refresh" to="." method="_on_Refresh_clicked"]
+[connection signal="clicked" from="Page/First" to="." method="_on_First_clicked"]
+[connection signal="clicked" from="Page/Previous" to="." method="_on_Previous_clicked"]
+[connection signal="clicked" from="Page/Next" to="." method="_on_Next_clicked"]

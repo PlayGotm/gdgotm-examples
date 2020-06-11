@@ -1,12 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://resources/ButtonUnfilled.tres" type="StyleBox" id=1]
-[ext_resource path="res://scripts/Button.gd" type="Script" id=2]
-[ext_resource path="res://resources/Pixel.ttf" type="DynamicFontData" id=3]
-
-[sub_resource type="DynamicFont" id=1]
-size = 48
-font_data = ExtResource( 3 )
+[ext_resource path="res://components/Button/Unfilled.tres" type="StyleBox" id=1]
+[ext_resource path="res://components/Button/Button.gd" type="Script" id=2]
+[ext_resource path="res://resources/fonts/RobotoLight-32px.tres" type="DynamicFont" id=3]
 
 [node name="Button" type="Panel"]
 anchor_right = 1.0
@@ -21,8 +17,10 @@ script = ExtResource( 2 )
 modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 81.5, 28 )
-custom_fonts/font = SubResource( 1 )
+margin_right = 323.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( 161.5, 28 )
+custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Text"
 align = 1

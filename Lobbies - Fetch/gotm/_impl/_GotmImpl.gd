@@ -299,7 +299,7 @@ static func _match_lobby(lobby, fetch) -> bool:
 		
 		var lhs = fetch.filter_properties[key]
 		var rhs = lobby._impl.props[key]
-		if lhs != null and lhs != rhs:
+		if lhs != null and str(lhs) != str(rhs):
 			return false
 		
 	return true

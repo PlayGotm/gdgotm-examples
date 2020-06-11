@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://gotm/GotmUser.gd"
 }, {
 "base": "Reference",
+"class": "Utility",
+"language": "GDScript",
+"path": "res://Utility.gd"
+}, {
+"base": "Reference",
 "class": "_GotmDebugImpl",
 "language": "GDScript",
 "path": "res://gotm/_impl/_GotmDebugImpl.gd"
@@ -50,6 +55,7 @@ _global_script_class_icons={
 "GotmLobby": "",
 "GotmLobbyFetch": "",
 "GotmUser": "",
+"Utility": "",
 "_GotmDebugImpl": "",
 "_GotmImpl": ""
 }
@@ -57,8 +63,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Lobbies - Fetch (gotm.io)"
-run/main_scene="res://Menu.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://Root.tscn"
 config/description="Filter and sort lobbies using Gotm's GDScript API."
 
 [autoload]
@@ -71,12 +76,12 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=480
-window/size/height=960
+window/size/width=640
+window/size/height=640
 window/size/test_width=640
-window/size/test_height=960
+window/size/test_height=640
 window/stretch/mode="2d"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep"
 stretch_2d=true
 
 [gdnative]

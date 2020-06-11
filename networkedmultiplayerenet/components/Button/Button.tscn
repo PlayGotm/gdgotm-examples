@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://components/Button/Unfilled.tres" type="StyleBox" id=1]
+[ext_resource path="res://components/Button/Button.gd" type="Script" id=2]
+[ext_resource path="res://resources/fonts/RobotoLight-32px.tres" type="DynamicFont" id=3]
+
+[node name="Button" type="Panel"]
+anchor_right = 1.0
+margin_left = 310.0
+margin_top = 10.0
+margin_right = -7.0
+margin_bottom = 66.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 161.5, 28 )
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Text"
+align = 1
+valign = 1
+
+[node name="Texture" type="TextureRect" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.0
+margin_top = -18.0
+margin_right = 18.0
+margin_bottom = 18.0
+expand = true
+stretch_mode = 5
+
+[connection signal="gui_input" from="." to="." method="_on_Button_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Button_mouse_exited"]
+[connection signal="resized" from="." to="." method="_on_Button_resized"]

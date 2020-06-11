@@ -1,0 +1,138 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Lobbies.gd" type="Script" id=1]
+[ext_resource path="res://components/Card/Card.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/fonts/RobotoLight-24px.tres" type="DynamicFont" id=3]
+[ext_resource path="res://components/Spinner/Spinner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://components/LobbyEntry/LobbyEntry.tscn" type="PackedScene" id=5]
+[ext_resource path="res://components/Button/Button.tscn" type="PackedScene" id=6]
+[ext_resource path="res://resources/textures/Refresh.svg" type="Texture" id=7]
+[ext_resource path="res://components/TextInput/TextInput.tscn" type="PackedScene" id=8]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.917647, 0.929412, 0.913725, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.529412, 0.529412, 0.529412, 1 )
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0.658824, 0.152941, 1 )
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.85098, 0.85098, 0.85098, 1 )
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="Lobbies" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.882353, 0.882353, 0.882353, 1 )
+
+[node name="List" parent="." instance=ExtResource( 2 )]
+margin_bottom = -101.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Title" type="Label" parent="List"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 96.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Lobbies"
+
+[node name="Spinner" parent="List" instance=ExtResource( 4 )]
+
+[node name="LobbyEntry" parent="List" instance=ExtResource( 5 )]
+custom_styles/panel = SubResource( 2 )
+
+[node name="Entries" type="Control" parent="List"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.56827
+margin_right = 1.5683
+
+[node name="Refresh" parent="List" instance=ExtResource( 6 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -28.0
+margin_top = -69.0
+margin_right = 28.0
+margin_bottom = -13.0005
+rect_pivot_offset = Vector2( 28, 28 )
+custom_styles/panel = SubResource( 3 )
+texture = ExtResource( 7 )
+unfilled_stylebox = SubResource( 3 )
+filled_stylebox = SubResource( 4 )
+
+[node name="Host" parent="." instance=ExtResource( 2 )]
+anchor_top = 1.0
+margin_top = -88.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Name" parent="Host" instance=ExtResource( 8 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 15.0
+margin_top = -25.0
+margin_right = 429.0
+margin_bottom = 25.0
+custom_styles/panel = SubResource( 5 )
+placeholder_text = "Lobby name..."
+
+[node name="Host" parent="Host" instance=ExtResource( 6 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -172.0
+margin_top = -28.0
+margin_right = -18.0
+margin_bottom = 28.0
+custom_styles/panel = SubResource( 3 )
+text = "Host"
+unfilled_stylebox = SubResource( 3 )
+filled_stylebox = SubResource( 4 )
+
+[connection signal="selected" from="List/LobbyEntry" to="." method="_on_LobbyEntry_selected"]
+[connection signal="clicked" from="List/Refresh" to="." method="_on_Refresh_clicked"]
+[connection signal="clicked" from="Host/Host" to="." method="_on_Host_clicked"]

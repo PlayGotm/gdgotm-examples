@@ -16,17 +16,17 @@ _global_script_class_icons={
 [application]
 
 config/name="NetworkedMultiplayerENet Example (GotM)"
-run/main_scene="res://scenes/Root.tscn"
+run/main_scene="res://Root.tscn"
 
 [display]
 
-window/size/width=320
-window/size/height=320
+window/size/width=640
+window/size/height=640
 window/size/test_width=640
-window/size/test_height=960
+window/size/test_height=640
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep"
 
 [rendering]
 

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Root.gd" type="Script" id=1]
+[ext_resource path="res://Lobbies.tscn" type="PackedScene" id=2]
+[ext_resource path="res://components/Game/Game.tscn" type="PackedScene" id=3]
+
+[node name="Root" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Lobbies" parent="." instance=ExtResource( 2 )]
+
+[node name="Game" parent="." instance=ExtResource( 3 )]
+visible = false
+

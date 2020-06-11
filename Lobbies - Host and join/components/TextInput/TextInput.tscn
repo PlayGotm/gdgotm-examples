@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://components/TextInput/TextInput.gd" type="Script" id=1]
+[ext_resource path="res://resources/fonts/RobotoLight-24px.tres" type="DynamicFont" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.85098, 0.85098, 0.85098, 1 )
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 0 )
+
+[node name="TextInput" type="Panel"]
+margin_right = 360.0
+margin_bottom = 50.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="Input" type="LineEdit" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 17.0
+margin_right = -15.0
+custom_styles/read_only = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.490196, 0.490196, 0.490196, 1 )
+
+[connection signal="text_changed" from="Input" to="." method="_on_Input_text_changed"]

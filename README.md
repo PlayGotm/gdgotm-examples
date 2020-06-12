@@ -6,17 +6,7 @@
   <a href="https://gotm.io/about">Learn more</a>
 </p>
 
-# Networked multiplayer
-Connect players in your networked multiplayer game without plugins or port-forwarding.
-
-### NetworkedMultiplayerENet
-[Guide](https://gotm.io/docs#networked-multiplayer) • [Live demo](https://gotm.io/game-examples/networkedmultiplayerenet) • [Source](https://github.com/PlayGotm/Game-Examples/tree/master/NetworkedMultiplayerENet) • [Download]()
-
-# Lobbies
-The [GDScript plugin](https://gotm.io/about/plugin) gives you a complete solution for managing player-hosted lobbies.
-
-### Lobbies - Host and join
-[Guide](https://gotm.io/docs#lobbies) • [Live demo](https://gotm.io/game-examples/lobbies) • [Source](https://github.com/PlayGotm/Game-Examples/tree/master/Lobbies%20-%20Host%20and%20join) • [Download]()
-
-### Lobbies - Fetch
-[Guide](https://gotm.io/docs#fetch-lobbies) • [Live demo](https://gotm.io/game-examples/lobbies-fetch) • [Source](https://github.com/PlayGotm/Game-Examples/tree/master/Lobbies%20-%20Fetch) • [Download]()
+# Guides
+- [NetworkedMultiplayerENet](https://gotm.io/docs#networked-multiplayer)
+- [Lobbies - Host and join](https://gotm.io/docs#lobbies)
+- [Lobbies - Fetch](https://gotm.io/docs#fetch-lobbies)

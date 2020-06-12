@@ -64,12 +64,24 @@ var sort_property: String = ""
 # Sort results in ascending order?
 var sort_ascending: bool = false
 
+# If not null, fetch lobbies whose sort property's value is equal to or greater than 'sort_min'.
+var sort_min = null
+
+# If not null, fetch lobbies whose sort property's value is equal to or lesser than 'sort_max'.
+var sort_max = null
+
+# If true, and 'sort_min' is provided, exclude lobbies whose sort property's value is equal to 'sort_min'.
+var sort_min_exclusive = false
+
+# If true, and 'sort_max' is provided, exclude lobbies whose sort property's value is equal to 'sort_max'.
+var sort_max_exclusive = false
+
 
 
 ##############################################################
 # METHODS
 ##############################################################
-# All these methods asynchronously fetch up to 20 non-hidden
+# All these methods asynchronously fetch up to 8 non-hidden
 # and non-locked lobbies.
 #
 # Modifying any filtering or sorting option resets the state of this
@@ -82,24 +94,24 @@ var sort_ascending: bool = false
 
 # Fetch the next lobbies, starting after the last lobby fetched
 # in the previous call.
-func next(count: int = 20) -> Array:
+func next(count: int = 8) -> Array:
 	return yield(_GotmImpl._fetch_lobbies(self, count, "next"), "completed")
 
 
 # Fetch the previous lobbies, ending before the first lobby
 # that was fetched in the previous call.
-func previous(count: int = 20) -> Array:
+func previous(count: int = 8) -> Array:
 	return yield(_GotmImpl._fetch_lobbies(self, count, "previous"), "completed")
 
 
 # Fetch the first lobbies.
-func first(count: int = 20) -> Array:
+func first(count: int = 8) -> Array:
 	return yield(_GotmImpl._fetch_lobbies(self, count, "first"), "completed")
 
 
 # Fetch lobbies at the current position.
 # Useful for refreshing lobbies without changing the page.
-func current(count: int = 20) -> Array:
+func current(count: int = 8) -> Array:
 	return yield(_GotmImpl._fetch_lobbies(self, count, "current"), "completed")
 
 

@@ -1,3 +1,3 @@
-# gotm.io Game Examples
+# Gotm Game Examples
 
-Example Godot games using various Gotm APIs.
+Godot game examples using various Gotm APIs.

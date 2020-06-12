@@ -88,9 +88,16 @@ func set_lobbies(lobbies):
 		node.rect_position.y += i * 40
 
 
+var _debounce_id = 0
 func _on_Search_text_changed(new_text):
-	_fetch.filter_name = new_text
-	reset()
+	set_lobbies(null)
+	_debounce_id += 1
+	var id = _debounce_id
+	yield(get_tree().create_timer(0.75), "timeout")
+	if id == _debounce_id:
+		_fetch.filter_name = new_text
+		reset()
+	
 
 
 func _on_Refresh_clicked(instance):

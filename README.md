@@ -13,7 +13,7 @@ Connect players in your networked multiplayer game without plugins or port-forwa
 [Guide](https://gotm.io/docs#networked-multiplayer) • [Live demo](https://gotm.io/game-examples/networkedmultiplayerenet) • [Source](https://github.com/PlayGotm/Game-Examples/tree/master/NetworkedMultiplayerENet) • [Download]()
 
 # Lobbies
-The GDScript plugin gives you a complete solution for managing player-hosted lobbies.
+The [GDScript plugin](https://gotm.io/about/plugin) gives you a complete solution for managing player-hosted lobbies.
 
 ## Lobbies - Host and join
 [Guide](https://gotm.io/docs#lobbies) • [Live demo](https://gotm.io/game-examples/lobbies) • [Source](https://github.com/PlayGotm/Game-Examples/tree/master/Lobbies%20-%20Host%20and%20join) • [Download]()

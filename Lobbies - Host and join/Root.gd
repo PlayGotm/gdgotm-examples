@@ -15,9 +15,12 @@ func _on_LobbyEntry_selected(lobby):
 	$Lobbies.hide()
 	$Game.show()
 	
-	$Game.join()
+	$Game/Spinner.show()
 	var success = yield(lobby.join(), "completed")
-	if not success:
+	$Game/Spinner.hide()
+	if success:
+		$Game.join()
+	else:
 		push_error("Failed to connect to lobby '" + lobby.name + "'!")
 		$Lobbies.show()
 		$Game.hide()

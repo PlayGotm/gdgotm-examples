@@ -150,6 +150,6 @@ valign = 1
 [node name="Game" parent="." instance=ExtResource( 10 )]
 visible = false
 
-[connection signal="selected" from="Lobbies/List/LobbyEntry" to="Lobbies" method="_on_LobbyEntry_selected"]
+[connection signal="selected" from="Lobbies/List/LobbyEntry" to="." method="_on_LobbyEntry_selected"]
 [connection signal="clicked" from="Lobbies/List/Refresh" to="." method="_on_Refresh_clicked"]
 [connection signal="clicked" from="Lobbies/Host/Host" to="." method="_on_Host_clicked"]

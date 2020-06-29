@@ -22,8 +22,10 @@ func join():
 	get_tree().set_network_peer(peer)
 	
 	$Spinner.show()
+	$Instructions.hide()
 	yield(get_tree(), "connected_to_server")
 	$Spinner.hide()
+	$Instructions.show()
 
 
 func _player_connected(id):
@@ -80,3 +82,7 @@ func _on_Background_gui_input(event):
 			var y1: int = int(v1.y)
 			rpc("_rasterize_line", x0, y0, x1, y1, _color)
 			_mouse_start = event.position
+
+
+func _on_CloseInstructions_clicked(instance):
+	$Instructions.hide()

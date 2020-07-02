@@ -49,6 +49,10 @@ margin_top = -56.0
 margin_right = 46.0
 margin_bottom = 0.0
 text = "Ok"
+filled = false
+texture = null
+size = 0
+group = 0
 
 [connection signal="gui_input" from="Background" to="." method="_on_Background_gui_input"]
 [connection signal="clicked" from="Instructions/CloseInstructions" to="." method="_on_CloseInstructions_clicked"]

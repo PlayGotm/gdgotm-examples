@@ -16,8 +16,10 @@ func _on_LobbyEntry_selected(lobby):
 	$Game.show()
 	
 	$Game/Spinner.show()
+	$Game/Instructions.hide()
 	var success = yield(lobby.join(), "completed")
 	$Game/Spinner.hide()
+	$Game/Instructions.show()
 	if success:
 		$Game.join()
 	else:

@@ -6,7 +6,7 @@ signal clicked(instance)
 export(String) var text = "Text" setget set_text
 export(bool) var filled = false setget set_filled
 export(Texture) var texture = null setget set_texture
-export(int, "32px", "64px") var size = 0 setget set_size
+export(int, "32px", "64px") var size = 0 setget _set_size
 export(int, "None", "Left", "Center", "Right") var group = 0 setget set_group
 
 var _unfilled_stylebox = preload("Unfilled.tres")
@@ -32,7 +32,7 @@ func set_group(new_group):
 		_filled_stylebox = preload("FilledRight.tres")
 	set_filled(filled)
 
-func set_size(new_size):
+func _set_size(new_size):
 	size = new_size
 	var font
 	if size == 0:

@@ -92,12 +92,14 @@ func text_to_speech(message: String, language: String = "en-US") -> bool:
 
 # Asynchronously open up the browser's file picker.
 #
+# You can only call this in a user interaction input event, such as a click.
+#
 # If 'types' is specified, limit the file picker to files with matching file
 # types (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Unique_file_type_specifiers).
 # If 'only_one' is true, only allow the user to pick one file.
 #
-# If a picking-session is already in progress, an empty
-# array is asynchronously returned.
+# If a picking-session is already in progress, the result of that picking-session
+# will be asynchronously returned.
 #
 # Asynchronously return an array of 'GotmFile'.
 # Use 'yield(pick_files(), "completed")' to retrieve the return value.

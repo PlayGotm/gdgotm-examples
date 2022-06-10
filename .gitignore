@@ -2,3 +2,4 @@ build
 .import
 export_presets.cfg
 *.pck
+*.exe

@@ -1,0 +1,148 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "GotmConfig",
+"language": "GDScript",
+"path": "res://gotm/GotmConfig.gd"
+}, {
+"base": "Reference",
+"class": "GotmDebug",
+"language": "GDScript",
+"path": "res://gotm/GotmDebug.gd"
+}, {
+"base": "Reference",
+"class": "GotmFile",
+"language": "GDScript",
+"path": "res://gotm/GotmFile.gd"
+}, {
+"base": "Reference",
+"class": "GotmLeaderboard",
+"language": "GDScript",
+"path": "res://gotm/GotmLeaderboard.gd"
+}, {
+"base": "Reference",
+"class": "GotmLobby",
+"language": "GDScript",
+"path": "res://gotm/GotmLobby.gd"
+}, {
+"base": "Reference",
+"class": "GotmLobbyFetch",
+"language": "GDScript",
+"path": "res://gotm/GotmLobbyFetch.gd"
+}, {
+"base": "Reference",
+"class": "GotmPeriod",
+"language": "GDScript",
+"path": "res://gotm/GotmPeriod.gd"
+}, {
+"base": "Reference",
+"class": "GotmScore",
+"language": "GDScript",
+"path": "res://gotm/GotmScore.gd"
+}, {
+"base": "Reference",
+"class": "GotmUser",
+"language": "GDScript",
+"path": "res://gotm/GotmUser.gd"
+}, {
+"base": "Reference",
+"class": "_Gotm",
+"language": "GDScript",
+"path": "res://gotm/_impl/_Gotm.gd"
+}, {
+"base": "Reference",
+"class": "_GotmAuth",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmAuth.gd"
+}, {
+"base": "Reference",
+"class": "_GotmAuthDevelopment",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmAuthDevelopment.gd"
+}, {
+"base": "Reference",
+"class": "_GotmDebugImpl",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmDebugImpl.gd"
+}, {
+"base": "Reference",
+"class": "_GotmImpl",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmImpl.gd"
+}, {
+"base": "Reference",
+"class": "_GotmImplUtility",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmImplUtility.gd"
+}, {
+"base": "Reference",
+"class": "_GotmLeaderboard",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmLeaderboard.gd"
+}, {
+"base": "Reference",
+"class": "_GotmScore",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmScore.gd"
+}, {
+"base": "Reference",
+"class": "_GotmScoreDevelopment",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmScoreDevelopment.gd"
+}, {
+"base": "Reference",
+"class": "_GotmStore",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmStore.gd"
+}, {
+"base": "Reference",
+"class": "_GotmUtility",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmUtility.gd"
+} ]
+_global_script_class_icons={
+"GotmConfig": "",
+"GotmDebug": "",
+"GotmFile": "",
+"GotmLeaderboard": "",
+"GotmLobby": "",
+"GotmLobbyFetch": "",
+"GotmPeriod": "",
+"GotmScore": "",
+"GotmUser": "",
+"_Gotm": "",
+"_GotmAuth": "",
+"_GotmAuthDevelopment": "",
+"_GotmDebugImpl": "",
+"_GotmImpl": "",
+"_GotmImplUtility": "",
+"_GotmLeaderboard": "",
+"_GotmScore": "",
+"_GotmScoreDevelopment": "",
+"_GotmStore": "",
+"_GotmUtility": ""
+}
+
+[application]
+
+config/name="Scores"
+run/main_scene="res://Root.tscn"
+
+[autoload]
+
+Gotm="*res://gotm/Gotm.gd"
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false

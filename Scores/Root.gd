@@ -5,6 +5,7 @@ func _ready():
 	var config := GotmConfig.new()
 	Gotm.initialize(config)
 	
+	# Clear existing scores from local storage.
 	yield(GotmScore.clear_local(), "completed")
 	
 	# Create scores

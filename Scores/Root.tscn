@@ -4,4 +4,3 @@
 
 [node name="Root" type="Control"]
 script = ExtResource( 1 )
-

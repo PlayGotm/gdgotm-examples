@@ -2,7 +2,10 @@ extends Control
 
 
 func _ready():
-	Gotm.initialize()
+	var config := GotmConfig.new()
+	Gotm.initialize(config)
+	
+	yield(GotmScore.clear_local(), "completed")
 	
 	# Create scores
 	var score1: GotmScore = yield(GotmScore.create("bananas_collected", 1), "completed")

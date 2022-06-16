@@ -1,22 +1,27 @@
 extends Control
 
 
+
 func _ready():
 	var config := GotmConfig.new()
+	#config.project_key = "authenticators/F29G6Al7eRssDMeyTwZX"
 	Gotm.initialize(config)
 	
-	# Clear existing scores from local storage.
-	yield(GotmScore.clear_local(), "completed")
+	
+	var score_name := "bananas_collected"
+	
+	# Clear existing scores for the test.
+	yield(clear_scores(score_name), "completed")
 	
 	# Create scores
-	var score1: GotmScore = yield(GotmScore.create("bananas_collected", 1), "completed")
-	var score2: GotmScore = yield(GotmScore.create("bananas_collected", 2), "completed")
-	var score3: GotmScore = yield(GotmScore.create("bananas_collected", 3), "completed")
+	var score1: GotmScore = yield(GotmScore.create(score_name, 1), "completed")
+	var score2: GotmScore = yield(GotmScore.create(score_name, 2), "completed")
+	var score3: GotmScore = yield(GotmScore.create(score_name, 3), "completed")
 	
 	# Create leaderboard query.
 	# You don't need to create a leaderboard before creating scores.
 	var top_leaderboard = GotmLeaderboard.new()
-	top_leaderboard.name = "bananas_collected"
+	top_leaderboard.name = score_name
 	
 	# Get top scores. 
 	var top_scores = yield(top_leaderboard.get_scores(), "completed")
@@ -88,3 +93,11 @@ func _ready():
 	
 	
 	print("done")
+
+
+func clear_scores(score_name: String):
+	var existing_leaderboard = GotmLeaderboard.new()
+	existing_leaderboard.name = score_name
+	var existing_scores = yield(existing_leaderboard.get_scores(), "completed")
+	for score in existing_scores:
+		yield(score.delete(), "completed")

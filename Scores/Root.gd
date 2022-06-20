@@ -1,13 +1,8 @@
 extends Control
 
-
-
-
-
 func _ready():
 	var config := GotmConfig.new()
 	Gotm.initialize(config)
-	
 	
 	var score_name := "bananas_collected"
 	
@@ -39,6 +34,14 @@ func _ready():
 	_GotmTest.assert_resource_equality(surrounding_scores_by_value.before, [score3])
 	_GotmTest.assert_resource_equality(surrounding_scores_by_value.score, score2)
 	_GotmTest.assert_resource_equality(surrounding_scores_by_value.after, [score1])
+	
+	# Get scores below score2
+	var scores_after_score_id = yield(top_leaderboard.get_scores(score2.id), "completed")
+	_GotmTest.assert_resource_equality(scores_after_score_id, [score1])
+	
+	# Get scores with lower value than score2
+	var scores_after_value = yield(top_leaderboard.get_scores(score2.value), "completed")
+	_GotmTest.assert_resource_equality(scores_after_value, [score1])
 	
 	# Get number of scores in leaderboard.
 	var score_count = yield(top_leaderboard.get_count(), "completed")

@@ -1,7 +1,20 @@
 extends Control
 
 func _ready():
+	# Initialize the Gotm plugin.
+	#
+	# By default all data, such as scores, is stored locally on the player's device.
+	# This means a player can see their own scores, but not scores from other players.
+	#
+	# If you provide a project key, the data will be stored on Gotm's cloud.
+	# This means players can see each other's scores.
+	# You can create a project key in your game's Gotm dashboard (https://gotm.io/dashboard).
+	#
+	# BETA NOTICE: Scores and leaderboards are currently beta features and are stored
+	# locally unless the game is running on https://gotm.io, even if you have provided a project key.
+	# Using beta features is safe when using this plugin.
 	var config := GotmConfig.new()
+	config.project_key = "" # YOUR PROJECT KEY HERE
 	Gotm.initialize(config)
 	
 	var score_name := "bananas_collected"

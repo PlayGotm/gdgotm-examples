@@ -7,6 +7,8 @@
 </p>
 
 # Guides
-- [NetworkedMultiplayerENet](https://gotm.io/docs#networked-multiplayer)
-- [Lobbies - Host and join](https://gotm.io/docs#lobbies)
-- [Lobbies - Fetch](https://gotm.io/docs#fetch-lobbies)
+
+- [Leaderboards](https://gotm.io/docs/leaderboards)
+- [NetworkedMultiplayerENet](https://gotm.io/docs/networked-multiplayer)
+- [Lobbies - Host and join](https://gotm.io/docs/lobbies)
+- [Lobbies - Fetch](https://gotm.io/docs/fetch-lobbies)

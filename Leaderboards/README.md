@@ -1,1 +1,1 @@
-[Guide](https://gotm.io/docs#scores)
+[Guide](https://gotm.io/docs/scores)

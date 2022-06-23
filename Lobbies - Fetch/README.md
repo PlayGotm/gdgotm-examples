@@ -1,1 +1,1 @@
-[Guide](https://gotm.io/docs#fetch-lobbies)
+[Guide](https://gotm.io/docs/fetch-lobbies)

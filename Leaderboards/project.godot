@@ -146,7 +146,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Scores"
+config/name="Leaderboards"
 run/main_scene="res://Root.tscn"
 
 [autoload]

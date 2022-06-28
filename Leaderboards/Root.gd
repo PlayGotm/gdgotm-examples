@@ -73,6 +73,18 @@ func _ready():
 	var rank_from_value = yield(top_leaderboard.get_rank(2.5), "completed")
 	_GotmTest.assert_equality(rank_from_value, 2)
 	
+	# Invert the leaderboard, so that a lower value means a higher rank.
+	top_leaderboard.is_inverted = true
+	var inverted_rank = yield(top_leaderboard.get_rank(score3.id), "completed")
+	_GotmTest.assert_equality(inverted_rank, 3)
+	top_leaderboard.is_inverted = false
+	
+	# Invert the leaderboard, so scores with a lower value come first.
+	top_leaderboard.is_inverted = true
+	var inverted_scores = yield(top_leaderboard.get_scores(), "completed")
+	_GotmTest.assert_resource_equality(inverted_scores, [score1, score2, score3])
+	top_leaderboard.is_inverted = false
+	
 	# Update an existing score's value
 	yield(score2.update(5), "completed")
 	top_scores = yield(top_leaderboard.get_scores(), "completed")

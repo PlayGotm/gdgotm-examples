@@ -37,10 +37,16 @@ func _ready():
 	_GotmTest.assert_resource_equality(top_scores, [score3, score2, score1])
 	
 	# Get scores above and below score2 in the leaderboard.
-	var surrounding_scores = yield(top_leaderboard.get_surrounding_scores(score2.id), "completed")
+	var surrounding_scores = yield(top_leaderboard.get_surrounding_scores(score2), "completed")
 	_GotmTest.assert_resource_equality(surrounding_scores.before, [score3])
 	_GotmTest.assert_resource_equality(surrounding_scores.score, score2)
 	_GotmTest.assert_resource_equality(surrounding_scores.after, [score1])
+	
+	# Get scores above and below score2 in the leaderboard with id.
+	var surrounding_scores_by_id = yield(top_leaderboard.get_surrounding_scores(score2.id), "completed")
+	_GotmTest.assert_resource_equality(surrounding_scores_by_id.before, [score3])
+	_GotmTest.assert_resource_equality(surrounding_scores_by_id.score, score2)
+	_GotmTest.assert_resource_equality(surrounding_scores_by_id.after, [score1])
 	
 	# Get scores above and below a certain value in the leaderboard.
 	var surrounding_scores_by_value = yield(top_leaderboard.get_surrounding_scores(2.5), "completed")
@@ -48,13 +54,27 @@ func _ready():
 	_GotmTest.assert_resource_equality(surrounding_scores_by_value.score, score2)
 	_GotmTest.assert_resource_equality(surrounding_scores_by_value.after, [score1])
 	
+	# Get scores above and below a certain rank in the leaderboard.
+	var surrounding_scores_by_rank = yield(top_leaderboard.get_surrounding_scores_by_rank(2), "completed")
+	_GotmTest.assert_resource_equality(surrounding_scores_by_rank.before, [score3])
+	_GotmTest.assert_resource_equality(surrounding_scores_by_rank.score, score2)
+	_GotmTest.assert_resource_equality(surrounding_scores_by_rank.after, [score1])
+	
 	# Get scores below score2
+	var scores_after_score = yield(top_leaderboard.get_scores(score2), "completed")
+	_GotmTest.assert_resource_equality(scores_after_score, [score1])
+	
+	# Get scores below score2 with id	
 	var scores_after_score_id = yield(top_leaderboard.get_scores(score2.id), "completed")
 	_GotmTest.assert_resource_equality(scores_after_score_id, [score1])
 	
 	# Get scores with lower value than score2
 	var scores_after_value = yield(top_leaderboard.get_scores(score2.value), "completed")
 	_GotmTest.assert_resource_equality(scores_after_value, [score1])
+	
+	# Get scores below rank 1
+	var scores_after_rank = yield(top_leaderboard.get_scores_by_rank(1), "completed")
+	_GotmTest.assert_resource_equality(scores_after_rank, [score2, score1])
 	
 	# Get number of scores in leaderboard.
 	var score_count = yield(top_leaderboard.get_count(), "completed")
@@ -73,13 +93,13 @@ func _ready():
 	var rank_from_value = yield(top_leaderboard.get_rank(2.5), "completed")
 	_GotmTest.assert_equality(rank_from_value, 2)
 	
-	# Invert the leaderboard, so that a lower value means a higher rank.
+	# Invert the leaderboard query, so that a lower value means a higher rank.
 	top_leaderboard.is_inverted = true
 	var inverted_rank = yield(top_leaderboard.get_rank(score3.id), "completed")
 	_GotmTest.assert_equality(inverted_rank, 3)
 	top_leaderboard.is_inverted = false
 	
-	# Invert the leaderboard, so scores with a lower value come first.
+	# Invert the leaderboard query, so scores with a lower value come first.
 	top_leaderboard.is_inverted = true
 	var inverted_scores = yield(top_leaderboard.get_scores(), "completed")
 	_GotmTest.assert_resource_equality(inverted_scores, [score1, score2, score3])

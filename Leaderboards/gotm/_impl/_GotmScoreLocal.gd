@@ -37,6 +37,8 @@ static func _get_scores() -> Dictionary:
 	file.close()
 	if content:
 		_global.scores = parse_json(content)
+		if !_global.scores:
+			_global.scores = {}
 	else:
 		_global.scores = {}
 	return _global.scores
@@ -97,19 +99,17 @@ static func clear_cache(path: String) -> void:
 	pass
 
 static func _fetch_counts(params) -> Array:
-	params = _GotmUtility.copy(params, {})
-	params.descending = true
-	var scores = _fetch_by_score_sort(params)
-	if params.limit > 1:
-		pass
-
+	var fetch_params = _GotmUtility.copy(params, {})
+	fetch_params.descending = true
+	fetch_params.erase("limit")
+	var scores = _fetch_by_score_sort(fetch_params)
 	var stats := []
 	for i in range(0, params.limit):
 		stats.append({"value": 0})
-
+	
 	if scores.empty():
 		return stats
-
+	
 	var min_value = params.get("min")
 	var max_value = params.get("max")
 	if !(min_value is float):
@@ -140,7 +140,7 @@ static func _fetch_rank(params) -> int:
 			return 0
 	var rank = 1
 	for score in scores:
-		if match_score.path == score.path || ScoreSearchPredicate.is_greater_than(match_score, score):
+		if match_score.path == score.path || (ScoreSearchPredicate.is_less_than(match_score, score) if params.get("isInverted") else ScoreSearchPredicate.is_greater_than(match_score, score)):
 			return rank
 		rank += 1
 	return rank
@@ -247,6 +247,8 @@ static func _fetch_by_score_sort(params) -> Array:
 	var matches := []
 	var scores_per_author := {}
 	var descending = params.get("descending")
+	if params.get("isInverted"):
+		descending = !descending
 	for score_path in _get_scores():
 		var score = _get_scores()[score_path]
 		if _match_score(score, params):
@@ -274,6 +276,14 @@ static func _fetch_by_score_sort(params) -> Array:
 			if descending && ScoreSearchPredicate.is_greater_than(cursor_score, m) || !descending && ScoreSearchPredicate.is_less_than(cursor_score, m):
 				after_matches.append(matches[i])
 		matches = after_matches
+	elif params.get("afterRank"):
+		for i in range(0, params.afterRank):
+			if matches.empty():
+				break
+			matches.pop_front()
+	if params.get("limit"):
+		while matches.size() > params.limit:
+			matches.pop_back()
 	return matches
 
 

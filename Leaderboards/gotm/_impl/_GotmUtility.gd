@@ -77,12 +77,33 @@ static func fetch_json(url: String, method: int, body = null, headers: PoolStrin
 	var code = signal_results[1] as int
 	var response_headers = signal_results[2] as PoolStringArray
 	var data = signal_results[3] as PoolByteArray
+	var data_string = data.get_string_from_utf8()
 	return copy(delete_null({
 		"code": code, 
-		"data": parse_json(data.get_string_from_utf8()), 
+		"data": parse_json(data_string) if data_string else {}, 
 		"headers": response_headers,
 		"ok": code >= 200 && code <= 299
 	}), FetchJsonResult.new())
+
+static func clean_for_json(value):
+	if value is float:
+		if is_nan(value):
+			return 0.0
+		if is_inf(value):
+			return 9007199254740991.0 if value >= 0 else -9007199254740991.0
+		return value
+		
+	if value is Array:
+		value = value.duplicate()
+		for i in range(0, value.size()):
+			value[i] = clean_for_json(value[i])
+		return value
+	if value is Dictionary:
+		value = value.duplicate()
+		for key in value:
+			value[key] = clean_for_json(value[key])
+		return value
+	return value
 
 
 class DeferredSignal:
@@ -180,6 +201,12 @@ static func join(array: Array, separator: String = ",") -> String:
 		if i < array.size() - 1:
 			string += separator
 	return string
+
+static func get_unix_offset() -> int:
+	var local_unix = OS.get_unix_time_from_datetime(OS.get_datetime())
+	var unix = OS.get_unix_time() 
+	var offset = local_unix - unix
+	return offset * 1000
 
 static func to_stable_json(value) -> String:
 	if value is Array:

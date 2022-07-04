@@ -17,6 +17,9 @@ func _ready():
 	config.project_key = "" # YOUR PROJECT KEY HERE
 	Gotm.initialize(config)
 	
+	
+	# Give our scores a descriptive name.
+	# We need this later when fetching scores.
 	var score_name := "bananas_collected"
 	
 	# Clear existing scores so the test runs the same every time.
@@ -30,6 +33,8 @@ func _ready():
 	# Create leaderboard query.
 	# You don't need to create a leaderboard before creating scores.
 	var top_leaderboard = GotmLeaderboard.new()
+	# Required. 
+	# Only include scores in our "bananas_collected" category.
 	top_leaderboard.name = score_name
 	
 	# Get top scores. 
@@ -146,6 +151,15 @@ func _ready():
 	_GotmTest.assert_resource_equality(yield(top_leaderboard.get_scores(), "completed"), [])
 	top_leaderboard.period = GotmPeriod.all()
 	
+	# If the score was created with a signed in user on Gotm, get the display name.
+	var user: GotmUser = yield(GotmUser.fetch(score1.user_id), "completed")
+	if user:
+		# User is a registered Gotm user and has a display name.
+		# Access it with the user.display_name field.
+		pass 
+	else:
+		# User is not registered and has no display name.
+		pass 
 	
 	print("done")
 

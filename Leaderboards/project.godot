@@ -115,6 +115,16 @@ _global_script_classes=[ {
 "path": "res://gotm/_impl/_GotmTest.gd"
 }, {
 "base": "Reference",
+"class": "_GotmUser",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmUser.gd"
+}, {
+"base": "Reference",
+"class": "_GotmUserLocal",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmUserLocal.gd"
+}, {
+"base": "Reference",
 "class": "_GotmUtility",
 "language": "GDScript",
 "path": "res://gotm/_impl/_GotmUtility.gd"
@@ -141,6 +151,8 @@ _global_script_class_icons={
 "_GotmScoreUtility": "",
 "_GotmStore": "",
 "_GotmTest": "",
+"_GotmUser": "",
+"_GotmUserLocal": "",
 "_GotmUtility": ""
 }
 

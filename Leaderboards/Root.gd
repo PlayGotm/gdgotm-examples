@@ -110,6 +110,18 @@ func _ready():
 	_GotmTest.assert_resource_equality(inverted_scores, [score1, score2, score3])
 	top_leaderboard.is_inverted = false
 	
+	# Newer scores are ranked higher than older scores with the same value.
+	var score1_copy: GotmScore = yield(GotmScore.create(score1.name, score1.value), "completed")
+	var score1_copy_rank_with_newest_first = yield(top_leaderboard.get_rank(score1_copy), "completed")
+	_GotmTest.assert_equality(score1_copy_rank_with_newest_first, 3)
+	
+	# Make older scores rank higher than newer scores with the same value.
+	top_leaderboard.is_oldest_first = true
+	var score1_copy_rank_with_oldest_first = yield(top_leaderboard.get_rank(score1_copy), "completed")
+	_GotmTest.assert_equality(score1_copy_rank_with_oldest_first, 4)
+	top_leaderboard.is_oldest_first = false
+	yield(score1_copy.delete(), "completed")
+	
 	# Update an existing score's value
 	yield(score2.update(5), "completed")
 	top_scores = yield(top_leaderboard.get_scores(), "completed")

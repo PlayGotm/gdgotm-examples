@@ -25,7 +25,8 @@ func _ready():
 	yield(clear_contents(), "completed")
 	
 	var directory = "my_directory"
-	var basename = "my_basename"
+	var extension = "txt"
+	var basename = "my_basename" + "." + extension
 	var key = directory + "/" + basename
 	var string_data = "my_data"
 	
@@ -57,6 +58,18 @@ func _ready():
 	# Delete by key
 	yield(GotmContent.delete_by_key(key), "completed")
 	_GotmTest.assert_equality(yield(GotmContent.get_by_key(key), "completed"), null)
+	_GotmTest.assert_equality(yield(GotmBlob.fetch(updated_content.blob_id), "completed"), null)
+	
+	
+	# List
+	# Demonstrate some interesting queries. Point to GotmContent.list for a full list of query options.
+	
+	# List private
+	# Demonstrate empty list if fetching all private or another author's private.
+	
+	# Create local
+	# List local
+	
 	
 	#static func create(data = null, properties: Dictionary = {}, key: String = "", name: String = "", private: bool = false)  -> GotmContent:
 	print("done")
@@ -64,13 +77,6 @@ func _ready():
 
 func clear_contents():
 	var directory = "my_directory"
-	var basename = "my_basename"
-	var key = directory + "/" + basename
-	yield(GotmContent.delete_by_key(key), "completed")
-	yield(GotmContent.delete_by_key(key), "completed")
-	yield(GotmContent.delete_by_key(key), "completed")
-#	var existing_leaderboard = GotmLeaderboard.new()
-#	existing_leaderboard.name = score_name
-#	var existing_scores = yield(existing_leaderboard.get_scores(), "completed")
-#	for score in existing_scores:
-#		yield(GotmScore.delete(score), "completed")
+	var directory_contents: Array = yield(GotmContent.list(GotmQuery.new().filter("directory", directory)), "completed")
+	for content in directory_contents:
+		yield(GotmContent.delete(content), "completed")

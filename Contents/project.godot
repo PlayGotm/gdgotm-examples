@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "GotmAuth",
+"language": "GDScript",
+"path": "res://gotm/GotmAuth.gd"
+}, {
+"base": "Reference",
 "class": "GotmBlob",
 "language": "GDScript",
 "path": "res://gotm/GotmBlob.gd"
@@ -48,6 +53,11 @@ _global_script_classes=[ {
 "class": "GotmLobbyFetch",
 "language": "GDScript",
 "path": "res://gotm/GotmLobbyFetch.gd"
+}, {
+"base": "Reference",
+"class": "GotmMark",
+"language": "GDScript",
+"path": "res://gotm/GotmMark.gd"
 }, {
 "base": "Reference",
 "class": "GotmPeriod",
@@ -125,6 +135,16 @@ _global_script_classes=[ {
 "path": "res://gotm/_impl/_GotmLeaderboard.gd"
 }, {
 "base": "Reference",
+"class": "_GotmMark",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmMark.gd"
+}, {
+"base": "Reference",
+"class": "_GotmMarkLocal",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmMarkLocal.gd"
+}, {
+"base": "Reference",
 "class": "_GotmPeriod",
 "language": "GDScript",
 "path": "res://gotm/_impl/_GotmPeriod.gd"
@@ -180,6 +200,7 @@ _global_script_classes=[ {
 "path": "res://gotm/_impl/_LocalStore.gd"
 } ]
 _global_script_class_icons={
+"GotmAuth": "",
 "GotmBlob": "",
 "GotmConfig": "",
 "GotmContent": "",
@@ -188,6 +209,7 @@ _global_script_class_icons={
 "GotmLeaderboard": "",
 "GotmLobby": "",
 "GotmLobbyFetch": "",
+"GotmMark": "",
 "GotmPeriod": "",
 "GotmQuery": "",
 "GotmScore": "",
@@ -203,6 +225,8 @@ _global_script_class_icons={
 "_GotmImpl": "",
 "_GotmImplUtility": "",
 "_GotmLeaderboard": "",
+"_GotmMark": "",
+"_GotmMarkLocal": "",
 "_GotmPeriod": "",
 "_GotmQuery": "",
 "_GotmScore": "",

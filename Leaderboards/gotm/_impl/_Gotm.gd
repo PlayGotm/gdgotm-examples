@@ -26,7 +26,12 @@ class_name _Gotm
 class __GotmGlobalData:
 	var config: GotmConfig
 	var version: String = "0.0.1"
-	var apiOrigin: String = "https://api.gotm.io"
+#	var apiOrigin: String = "https://api.gotm.io"
+	var apiOrigin: String = "http://localhost:7080"
+#	var apiWorkerOrigin: String = "https://gotm-api-worker-eubrk3zsia-uk.a.run.app"
+	var apiWorkerOrigin: String = "http://localhost:7880"
+#	var storageApiEndpoint: String = "https://storage.googleapis.com/gotm-api-production-d13f0.appspot.com"
+	var storageApiEndpoint: String = "http://localhost:7180"
 	var classes: Dictionary = {}
 
 const _version = "0.0.1"
@@ -68,4 +73,18 @@ static func get_singleton():
 		return
 	return Engine.get_singleton("Gotm")
 
+static func is_global_api(api: String) -> bool:
+	var config := get_config()
+	match api:
+		"scores":
+			return is_global_feature(config.force_local_scores, config.beta_unsafe_force_global_scores)
+		"contents":
+			return is_global_feature(config.force_local_contents, config.beta_unsafe_force_global_contents)
+		"marks":
+			return is_global_feature(config.force_local_marks, config.beta_unsafe_force_global_marks)
+		_:
+			return false
 
+
+static func has_global_api() -> bool:
+	return is_global_api("scores") || is_global_api("contents") || is_global_api("marks")

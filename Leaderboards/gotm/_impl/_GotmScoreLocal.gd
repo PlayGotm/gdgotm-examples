@@ -23,31 +23,6 @@
 class_name _GotmScoreLocal
 #warnings-disable
 
-const _global = {"scores": null}
-
-const FILE_NAME := "scores.json"
-
-static func _get_scores() -> Dictionary:
-	if _global.scores != null:
-		return _global.scores
-
-	var file = File.new()
-	file.open(_Gotm.get_local_path(FILE_NAME), File.READ)
-	var content = file.get_as_text() if file.is_open() else ""
-	file.close()
-	if content:
-		_global.scores = parse_json(content)
-		if !_global.scores:
-			_global.scores = {}
-	else:
-		_global.scores = {}
-	return _global.scores
-
-static func _write_scores() -> void:
-	var file = File.new()
-	file.open(_Gotm.get_local_path(FILE_NAME), File.WRITE)
-	file.store_string(to_json(_get_scores()))
-	file.close()
 
 static func create(api: String, data: Dictionary):
 	yield(_GotmUtility.get_tree(), "idle_frame")
@@ -59,24 +34,15 @@ static func create(api: String, data: Dictionary):
 		"props": data.props if data.get("props") else {},
 		"created": _GotmUtility.get_iso_from_unix_time()
 	}
-	_get_scores()[score.path] = score
-	_write_scores()
-	return _format(score)
+	return _format(_LocalStore.create(score))
 #
 static func update(id: String, data: Dictionary):
 	yield(_GotmUtility.get_tree(), "idle_frame")
-	if !(id in _get_scores()):
-		return
-	var score = _get_scores()[id]
-	for key in data:
-		score[key] = data[key]
-	_write_scores()
-	return _format(score)
+	return _format(_LocalStore.update(id, data))
 
 static func delete(id: String) -> void:
 	yield(_GotmUtility.get_tree(), "idle_frame")
-	_get_scores().erase(id)
-	_write_scores()
+	_LocalStore.delete(id)
 
 static func fetch(path: String, query: String = "", params: Dictionary = {}, authenticate: bool = false) -> Dictionary:
 	yield(_GotmUtility.get_tree(), "idle_frame")
@@ -85,7 +51,7 @@ static func fetch(path: String, query: String = "", params: Dictionary = {}, aut
 	var id = path_parts[1]
 	if api == "stats" && id == "rank" && query == "rankByScoreSort":
 		return {"path": _GotmStore.create_request_path(path, query, params), "value": _fetch_rank(params)}
-	return _format(_get_scores().get(path))
+	return _format(_LocalStore.fetch(path))
 
 static func list(api: String, query: String, params: Dictionary = {}, authenticate: bool = false) -> Array:
 	yield(_GotmUtility.get_tree(), "idle_frame")
@@ -133,7 +99,7 @@ static func _fetch_rank(params) -> int:
 	var scores = _fetch_by_score_sort(params)
 	var match_score
 	if params.get("score"):
-		match_score = _get_scores()[params.score]
+		match_score = _LocalStore.fetch(params.score)
 	elif params.get("value") is float:
 		match_score = {"value": params.value, "created": _GotmUtility.get_iso_from_unix_time(), "path": _GotmUtility.create_resource_path("scores")}
 	match_score = _format(match_score)
@@ -270,8 +236,7 @@ static func _fetch_by_score_sort(params) -> Array:
 	var descending = params.get("descending")
 	if params.get("isInverted"):
 		descending = !descending
-	for score_path in _get_scores():
-		var score = _get_scores()[score_path]
+	for score in _LocalStore.get_all("scores"):
 		if _match_score(score, params):
 			if params.get("isUnique"):
 				var existing_score = scores_per_author.get(score.author)
@@ -296,7 +261,6 @@ static func _fetch_by_score_sort(params) -> Array:
 			m = {"value": _GotmScoreUtility.encode_cursor_value(m.value, m.created)._bigint, "path": m.path, "created": m.created}
 			if cursor_score.path == m.path && cursor_score.value == m.value:
 				continue
-			var a = cursor_score.value < m.value
 			if descending && predicate.is_greater_than(cursor_score, m) || !descending && predicate.is_less_than(cursor_score, m):
 				after_matches.append(matches[i])
 		matches = after_matches

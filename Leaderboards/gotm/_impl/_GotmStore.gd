@@ -23,27 +23,27 @@
 class_name _GotmStore
 #warnings-disable
 
-static func create(api: String, data: Dictionary) -> Dictionary:
-	var created = yield(_request(api, HTTPClient.METHOD_POST, data, true), "completed")
+static func create(api, data: Dictionary, options: Dictionary = {}) -> Dictionary:
+	var created = yield(_request(create_request_path(api, "", {}, {}), HTTPClient.METHOD_POST, data, true), "completed")
 	if created:
 		_set_cache(created.path, created)
 	return created
 
-static func update(path: String, data: Dictionary) -> Dictionary:
-	var updated = yield(_request(path, HTTPClient.METHOD_PATCH, data, true), "completed")
+static func update(path, data: Dictionary, options: Dictionary = {}) -> Dictionary:
+	var updated = yield(_request(create_request_path(path, "", {}, options), HTTPClient.METHOD_PATCH, data, true), "completed")
 	if updated:
 		_set_cache(path, updated)
 	return updated
 
-static func delete(path: String) -> void:
+static func delete(path) -> void:
 	yield(_request(path, HTTPClient.METHOD_DELETE, null, true), "completed")
 	_cache.erase(path)
 	
-static func fetch(path: String, query: String = "", params: Dictionary = {}, authenticate: bool = false) -> Dictionary:
-	return yield(_cached_get_request(create_request_path(path, query, params), authenticate), "completed")
+static func fetch(path, query: String = "", params: Dictionary = {}, authenticate: bool = false, options: Dictionary = {}) -> Dictionary:
+	return yield(_cached_get_request(create_request_path(path, query, params, options), authenticate), "completed")
 
-static func list(api: String, query: String, params: Dictionary = {}, authenticate: bool = false) -> Array:
-	var data = yield(_cached_get_request(create_request_path(api, query, params), authenticate), "completed")
+static func list(api, query: String, params: Dictionary = {}, authenticate: bool = false, options: Dictionary = {}) -> Array:
+	var data = yield(_cached_get_request(create_request_path(api, query, params, options), authenticate), "completed")
 	if !data || !data.data:
 		return
 	return data.data
@@ -54,32 +54,24 @@ const _eviction_timers = {}
 const _eviction_timeout_seconds = 5
 
 static func clear_cache(path: String) -> void:
-	var prefixes = []
-	if path.find("?") >= 0:
-		prefixes.append(path)
-	elif path.find("/") >= 0:
-		prefixes.append(path)
-		prefixes.append(path + "?")
-	else:
-		prefixes.append(path)
-		prefixes.append(path + "?")
-		prefixes.append(path + "/")
 	for key in _cache.keys():
-		for prefix in prefixes:
-			if key == prefix || key.begins_with(prefix):
-				_cache.erase(key)
+		if key == path || key.begins_with(path):
+			_cache.erase(key)
 
 class EvictionTimerHandler:
 	static func on_timeout(path: String):
 		_cache.erase(path)
 
-static func create_request_path(path: String, query: String, params: Dictionary) -> String:
+static func create_request_path(path: String, query: String = "", params: Dictionary = {}, options: Dictionary = {}) -> String:
+	var query_object := {}
 	if query:
-		var query_object := {}
-		_GotmUtility.copy(params, query_object)
 		query_object.query = query
-		path += _GotmUtility.create_query_string(query_object)
-	return path
+		_GotmUtility.copy(params, query_object)
+	if options.get("expand"):
+		var expands = options.get("expand").keys()
+		expands.sort()
+		query_object.expand = expands.join(",")
+	return path + _GotmUtility.create_query_string(query_object)
 
 static func _set_cache(path: String, data):
 	var existing_timer = _eviction_timers.get(path)
@@ -90,9 +82,10 @@ static func _set_cache(path: String, data):
 	if !data:
 		_cache.erase(path)
 		return
-	for key in ["created", "updated", "expired"]:
-		if key in data:
-			data[key] = _GotmUtility.get_unix_time_from_iso(data[key])
+	if data is Dictionary:
+		for key in ["created", "updated", "expired"]:
+			if key in data:
+				data[key] = _GotmUtility.get_unix_time_from_iso(data[key])
 	_cache[path] = data
 	var timer := _GotmUtility.get_tree().create_timer(_eviction_timeout_seconds)
 	timer.connect("timeout", EvictionTimerHandler, "on_timeout", [path])
@@ -100,6 +93,10 @@ static func _set_cache(path: String, data):
 	return data
 
 static func _cached_get_request(path: String, authenticate: bool = false) -> Dictionary:
+	if !path:
+		yield(_GotmUtility.get_tree(), "idle_frame")
+		return
+	
 	if path in _cache:
 		yield(_GotmUtility.get_tree(), "idle_frame")
 		return _cache[path]
@@ -114,7 +111,7 @@ static func _cached_get_request(path: String, authenticate: bool = false) -> Dic
 	var value = yield(_request(path, HTTPClient.METHOD_GET, null, authenticate), "completed")
 	if value:
 		value = _set_cache(path, value)
-		if value.get("data") is Array && value.get("next") is String:
+		if value is Dictionary && value.get("data") is Array && value.get("next") is String:
 			for resource in value.data:
 				_set_cache(resource.path, resource)
 		
@@ -122,7 +119,7 @@ static func _cached_get_request(path: String, authenticate: bool = false) -> Dic
 	queue_signal.trigger()
 	return value
 
-static func _request(path: String, method: int, body = null, authenticate: bool = false) -> Dictionary:
+static func _request(path, method: int, body = null, authenticate: bool = false) -> Dictionary:
 	if !path:
 		yield(_GotmUtility.get_tree(), "idle_frame")
 		return
@@ -156,8 +153,20 @@ static func _request(path: String, method: int, body = null, authenticate: bool 
 		path += "$httpHeaders=" + _GotmUtility.encode_url_component(header_string)
 		
 		
-		
-	var result = yield(_GotmUtility.fetch_json(_Gotm.get_global().apiOrigin + "/" + path, method, body), "completed")
+	var result
+	if path.begins_with(_Gotm.get_global().storageApiEndpoint):
+		result = yield(_GotmUtility.fetch_data(path, method, body), "completed")
+	elif path.begins_with("blobs/upload") && body.get("data") is PoolByteArray:
+		body = body.duplicate()
+		var data = body.data
+		body.erase("data")
+		var bytes = PoolByteArray()
+		bytes += (to_json(body)).to_utf8()
+		bytes.append(0)
+		bytes += data
+		result = yield(_GotmUtility.fetch_json(_Gotm.get_global().apiWorkerOrigin + "/" + path, method, bytes), "completed")
+	else:
+		result = yield(_GotmUtility.fetch_json(_Gotm.get_global().apiOrigin + "/" + path, method, body), "completed")
 	if !result.ok:
 		return
 	return result.data

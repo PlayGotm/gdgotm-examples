@@ -34,9 +34,9 @@ static func get_surrounding_scores_by_rank(leaderboard, center) -> Dictionary:
 	return yield(_get_surrounding_scores(leaderboard, center), "completed")
 
 static func _get_surrounding_scores(leaderboard, center) -> Dictionary:
-	center = _GotmScore._coerce_score_id(center)
+	center = _coerce_id(center)
 	center = _GotmUtility.clean_for_json(center)
-	if center is String:
+	if center && center is String:
 		var score_id = center
 		var beforeSig := _GotmUtility.defer_signal(_GotmScore._list(leaderboard, score_id, true))
 		var scoreSig = GotmScore.fetch(score_id)
@@ -63,3 +63,9 @@ static func _get_surrounding_scores(leaderboard, center) -> Dictionary:
 	var before: Array = yield(beforeSig.get_yieldable(), "completed")
 	before.invert()
 	return {"before": before, "score": score, "after": after}
+
+
+
+	
+static func _coerce_id(resource_or_id):
+	return _GotmUtility.coerce_resource_id(resource_or_id, "scores")

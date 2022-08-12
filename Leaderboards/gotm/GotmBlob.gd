@@ -20,29 +20,30 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-class_name _GotmImplUtility
+class_name GotmBlob
 #warnings-disable
 
+# A GotmBlob is a piece of arbitrary data stored as a PoolByteArray.
+# The data can be anything, such as images, scenes or JSON files.
 
-static func _fuzzy_compare(a, b, compare_less: bool) -> bool:
-	if typeof(a) == typeof(b):
-		return a < b if compare_less else a > b
-		
-	# GDScript doesn't handle comparison of different types very well.
-	# Abuse Array's min and max functions instead.
-	var m = [a, b].min() if compare_less else [a, b].max()
-	if m != null || a == null || b == null:
-		return m == a
-			
-	# Array method failed. Go with strings instead.
-	a = String(a)
-	b = String(b)
-	return a < b if compare_less else a > b
+##############################################################
+# PROPERTIES
+##############################################################
 
+# Unique immutable identifier.
+var id: String
 
-static func is_less(a, b) -> bool:
-	return _fuzzy_compare(a, b, true)
+# The size of the blob's data in bytes.
+var size: int
 
+##############################################################
+# METHODS
+##############################################################
 
-static func is_greater(a, b) -> bool:
-	return _fuzzy_compare(a, b, false)
+# Get an existing blob.
+static func fetch(blob_or_id) -> GotmBlob:
+	return yield(_GotmBlob.fetch(blob_or_id), "completed")
+
+# Get the blob's data as a PoolByteArray.
+static func fetch_data(blob_or_id) -> PoolByteArray:
+	return yield(_GotmBlob.fetch_data(blob_or_id), "completed")

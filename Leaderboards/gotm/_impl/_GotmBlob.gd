@@ -20,29 +20,27 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-class_name _GotmImplUtility
+class_name _GotmBlob
 #warnings-disable
 
 
-static func _fuzzy_compare(a, b, compare_less: bool) -> bool:
-	if typeof(a) == typeof(b):
-		return a < b if compare_less else a > b
-		
-	# GDScript doesn't handle comparison of different types very well.
-	# Abuse Array's min and max functions instead.
-	var m = [a, b].min() if compare_less else [a, b].max()
-	if m != null || a == null || b == null:
-		return m == a
-			
-	# Array method failed. Go with strings instead.
-	a = String(a)
-	b = String(b)
-	return a < b if compare_less else a > b
+static func get_implementation(id = null):
+	var config := _Gotm.get_config()
+	if _LocalStore.fetch(id) || !_Gotm.has_global_api():
+		return _GotmBlobLocal
+	return _GotmStore
 
 
-static func is_less(a, b) -> bool:
-	return _fuzzy_compare(a, b, true)
+static func fetch(blob_or_id):
+	var id = _coerce_id(blob_or_id)
+	return yield(get_implementation(id).fetch(id), "completed")
 
+static func fetch_data(blob_or_id):
+	var id = _coerce_id(blob_or_id)
+	if !id:
+		yield(_GotmUtility.get_tree(), "idle_frame")
+		return
+	return yield(get_implementation(id).fetch(_Gotm.get_global().storageApiEndpoint + "/" + id), "completed")
 
-static func is_greater(a, b) -> bool:
-	return _fuzzy_compare(a, b, false)
+static func _coerce_id(resource_or_id):
+	return _GotmUtility.coerce_resource_id(resource_or_id, "blobs")

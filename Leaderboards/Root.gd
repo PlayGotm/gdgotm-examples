@@ -38,6 +38,7 @@ func _ready():
 	top_leaderboard.name = score_name
 	
 	# Get top scores. 
+	var top_scores = []
 	var top_scores = yield(top_leaderboard.get_scores(), "completed")
 	_GotmTest.assert_resource_equality(top_scores, [score3, score2, score1])
 	
@@ -46,7 +47,7 @@ func _ready():
 	_GotmTest.assert_resource_equality(surrounding_scores.before, [score3])
 	_GotmTest.assert_resource_equality(surrounding_scores.score, score2)
 	_GotmTest.assert_resource_equality(surrounding_scores.after, [score1])
-	
+
 	# Get scores above and below score2 in the leaderboard with id.
 	var surrounding_scores_by_id = yield(top_leaderboard.get_surrounding_scores(score2.id), "completed")
 	_GotmTest.assert_resource_equality(surrounding_scores_by_id.before, [score3])
@@ -120,20 +121,20 @@ func _ready():
 	var score1_copy_rank_with_oldest_first = yield(top_leaderboard.get_rank(score1_copy), "completed")
 	_GotmTest.assert_equality(score1_copy_rank_with_oldest_first, 4)
 	top_leaderboard.is_oldest_first = false
-	yield(score1_copy.delete(), "completed")
+	yield(GotmScore.delete(score1_copy), "completed")
 	
 	# Update an existing score's value
-	yield(score2.update(5), "completed")
+	yield(GotmScore.update(score2, 5), "completed")
 	top_scores = yield(top_leaderboard.get_scores(), "completed")
 	_GotmTest.assert_resource_equality(top_scores, [score2, score3, score1])
 
 	# Delete a score.
-	yield(score2.delete(), "completed")
+	yield(GotmScore.delete(score2), "completed")
 	top_scores = yield(top_leaderboard.get_scores(), "completed")
 	_GotmTest.assert_resource_equality(top_scores, [score3, score1])
 	
 	# Get scores by properties
-	yield(score1.update(null, {"difficulty": "hard", "level": 25}), "completed")
+	yield(GotmScore.update(score1, null, {"difficulty": "hard", "level": 25}), "completed")
 	top_leaderboard.properties = {"difficulty": "hard"}
 	_GotmTest.assert_resource_equality(yield(top_leaderboard.get_scores(), "completed"), [score1])
 	top_leaderboard.properties = {}
@@ -163,6 +164,12 @@ func _ready():
 	_GotmTest.assert_resource_equality(yield(top_leaderboard.get_scores(), "completed"), [])
 	top_leaderboard.period = GotmPeriod.all()
 	
+	# Create local score that is only stored locally on the user's device.
+	var local_score = yield(GotmScore.create_local(name, 1), "completed")
+	top_leaderboard.is_local = true
+	_GotmTest.assert_resource_equality(yield(top_leaderboard.get_scores(), "completed"), [local_score])
+	top_leaderboard.is_local = false
+	
 	# If the score was created with a signed in user on Gotm, get the display name.
 	var user: GotmUser = yield(GotmUser.fetch(score1.user_id), "completed")
 	if user:
@@ -181,4 +188,8 @@ func clear_scores(score_name: String):
 	existing_leaderboard.name = score_name
 	var existing_scores = yield(existing_leaderboard.get_scores(), "completed")
 	for score in existing_scores:
-		yield(score.delete(), "completed")
+		yield(GotmScore.delete(score), "completed")
+	existing_leaderboard.is_local = true
+	var local_existing_scores = yield(existing_leaderboard.get_scores(), "completed")
+	for score in local_existing_scores:
+		yield(GotmScore.delete(score), "completed")

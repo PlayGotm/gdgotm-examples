@@ -38,7 +38,6 @@ func _ready():
 	top_leaderboard.name = score_name
 	
 	# Get top scores. 
-	var top_scores = []
 	var top_scores = yield(top_leaderboard.get_scores(), "completed")
 	_GotmTest.assert_resource_equality(top_scores, [score3, score2, score1])
 	

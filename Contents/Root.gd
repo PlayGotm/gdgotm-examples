@@ -15,11 +15,7 @@ func _ready():
 	# locally unless the game is running on https://gotm.io, even if you have provided a project key.
 	# Using beta features is safe when using this plugin.
 	var config := GotmConfig.new()
-	
-	config.project_key = "authenticators/3dGQXDAcx0GxUmgjtdLY" # development
-##	config.project_key = "authenticators/fDyAbF0mfFcgnTghU8Jz" # production
-#	config.beta_unsafe_force_global_contents = true
-#	config.beta_unsafe_force_global_marks = true
+	config.project_key = "" # YOUR PROJECT KEY HERE
 	Gotm.initialize(config)
 	
 	# Clear existing contents so the test runs the same every time.

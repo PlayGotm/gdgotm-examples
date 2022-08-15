@@ -166,7 +166,12 @@ func _ready():
 	# Create local score that is only stored locally on the user's device.
 	var local_score = yield(GotmScore.create_local(name, 1), "completed")
 	top_leaderboard.is_local = true
-	_GotmTest.assert_resource_equality(yield(top_leaderboard.get_scores(), "completed"), [local_score])
+	if score1.is_local:
+		# If score1 is local, then GotmScore is in local mode and all scores will be local.
+		_GotmTest.assert_resource_equality(yield(top_leaderboard.get_scores(), "completed"), [score3, local_score, score1])
+	else:
+		# If score1 is not local, then GotmScore is not in local mode and only local_score will be local.
+		_GotmTest.assert_resource_equality(yield(top_leaderboard.get_scores(), "completed"), [local_score])		
 	top_leaderboard.is_local = false
 	
 	# If the score was created with a signed in user on Gotm, get the display name.

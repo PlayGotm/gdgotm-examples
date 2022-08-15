@@ -165,11 +165,6 @@ _global_script_classes=[ {
 "path": "res://gotm/_impl/_GotmScoreLocal.gd"
 }, {
 "base": "Reference",
-"class": "_GotmScoreUtility",
-"language": "GDScript",
-"path": "res://gotm/_impl/_GotmScoreUtility.gd"
-}, {
-"base": "Reference",
 "class": "_GotmStore",
 "language": "GDScript",
 "path": "res://gotm/_impl/_GotmStore.gd"
@@ -231,7 +226,6 @@ _global_script_class_icons={
 "_GotmQuery": "",
 "_GotmScore": "",
 "_GotmScoreLocal": "",
-"_GotmScoreUtility": "",
 "_GotmStore": "",
 "_GotmTest": "",
 "_GotmUser": "",

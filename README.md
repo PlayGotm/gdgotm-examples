@@ -6,9 +6,10 @@
   <a href="https://gotm.io/docs">Learn more</a>
 </p>
 
+_Supports versions 3.2.0 and newer._
+
 # Guides
 
-- [Leaderboards](https://gotm.io/docs/leaderboards)
-- [NetworkedMultiplayerENet](https://gotm.io/docs/networked-multiplayer)
-- [Lobbies - Host and join](https://gotm.io/docs/lobbies)
-- [Lobbies - Fetch](https://gotm.io/docs/fetch-lobbies)
+- [Leaderboard](https://gotm.io/docs/leaderboard)
+- [Lobby](https://gotm.io/docs/lobby)
+- [Multiplayer](https://gotm.io/docs/multiplayer)

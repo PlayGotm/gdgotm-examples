@@ -1,15 +1,19 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://examples/lobbies-host-and-join/LobbiesHostAndJoin.gd" type="Script" id=1]
+[ext_resource path="res://examples/lobby/host_and_join/LobbyHostAndJoin.gd" type="Script" id=1]
 [ext_resource path="res://components/Card/Card.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/fonts/Pacifico-200px.tres" type="DynamicFont" id=3]
 [ext_resource path="res://resources/fonts/RobotoLight-24px.tres" type="DynamicFont" id=4]
 [ext_resource path="res://components/Spinner/Spinner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://examples/lobbies-host-and-join/LobbyEntry.tscn" type="PackedScene" id=6]
+[ext_resource path="res://examples/lobby/host_and_join/LobbyEntry.tscn" type="PackedScene" id=6]
 [ext_resource path="res://components/Button/Button.tscn" type="PackedScene" id=7]
 [ext_resource path="res://resources/textures/Refresh.svg" type="Texture" id=8]
 [ext_resource path="res://components/TextInput/TextInput.tscn" type="PackedScene" id=9]
 [ext_resource path="res://components/Game/Game.tscn" type="PackedScene" id=10]
+
+
+
+
 
 
 [sub_resource type="StyleBoxFlat" id=1]

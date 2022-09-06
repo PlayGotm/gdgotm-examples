@@ -1,7 +1,7 @@
 extends Control
 
 
-const Utility := preload("res://examples/lobbies-fetch/Utility.gd")
+const Utility := preload("res://examples/lobby/fetch/Utility.gd")
 
 onready var lobby_template = $Lobbies/LobbyTemplate
 onready var lobby_list = $Lobbies/List

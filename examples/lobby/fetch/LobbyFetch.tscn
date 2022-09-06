@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://examples/lobbies-fetch/LobbiesFetch.gd" type="Script" id=1]
+[ext_resource path="res://examples/lobby/fetch/LobbyFetch.gd" type="Script" id=1]
 [ext_resource path="res://components/Card/Card.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/textures/Map.svg" type="Texture" id=3]
 [ext_resource path="res://resources/fonts/RobotoLight-24px.tres" type="DynamicFont" id=4]
@@ -14,9 +14,13 @@
 [ext_resource path="res://components/Button/FilledLeft.tres" type="StyleBox" id=12]
 [ext_resource path="res://components/TextInput/TextInput.tscn" type="PackedScene" id=13]
 [ext_resource path="res://components/Spinner/Spinner.tscn" type="PackedScene" id=14]
-[ext_resource path="res://examples/lobbies-fetch/Lobby.tscn" type="PackedScene" id=15]
+[ext_resource path="res://examples/lobby/fetch/Lobby.tscn" type="PackedScene" id=15]
 [ext_resource path="res://resources/textures/Refresh.svg" type="Texture" id=16]
 [ext_resource path="res://resources/fonts/RobotoLight-32px.tres" type="DynamicFont" id=17]
+
+
+
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )

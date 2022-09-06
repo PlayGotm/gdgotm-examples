@@ -1,6 +1,6 @@
 extends Control
 
-const Utility := preload("res://examples/lobbies-fetch/Utility.gd")
+const Utility := preload("res://examples/lobby/fetch/Utility.gd")
 
 
 var _lobby

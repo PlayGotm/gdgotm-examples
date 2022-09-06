@@ -1,5 +1,3 @@
-class_name Utility
-
 static func difficulty_to_string(difficulty):
 	match int(difficulty):
 		0:

@@ -46,8 +46,8 @@ remotesync func _set_color(color):
 
 # http://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#C
 remotesync func _rasterize_line(x0: int, y0: int, x1: int, y1: int, color: int) -> void:
-	var dx: int = abs(x1 - x0)
-	var dy: int = abs(y1 - y0)
+	var dx: int = int(abs(x1 - x0))
+	var dy: int = int(abs(y1 - y0))
 	var sx: int = 1 if x0 < x1 else -1
 	var sy: int = 1 if y0 < y1 else -1
 	var err: int = (dx if dx > dy else -dy) / 2

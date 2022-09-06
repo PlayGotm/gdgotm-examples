@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PeerCount.svg-5d42a017cf2358486f3cfa7925ceb3ce.stex"
+path="res://.import/PeerCount.svg-e25b701a5b42f83a7a835d858c34593f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/PeerCount.svg"
-dest_files=[ "res://.import/PeerCount.svg-5d42a017cf2358486f3cfa7925ceb3ce.stex" ]
+source_file="res://resources/textures/PeerCount.svg"
+dest_files=[ "res://.import/PeerCount.svg-e25b701a5b42f83a7a835d858c34593f.stex" ]
 
 [params]
 

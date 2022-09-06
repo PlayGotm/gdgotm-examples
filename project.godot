@@ -78,6 +78,116 @@ _global_script_classes=[ {
 "class": "GotmUser",
 "language": "GDScript",
 "path": "res://gotm/GotmUser.gd"
+}, {
+"base": "Reference",
+"class": "_Gotm",
+"language": "GDScript",
+"path": "res://gotm/_impl/_Gotm.gd"
+}, {
+"base": "Reference",
+"class": "_GotmAuth",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmAuth.gd"
+}, {
+"base": "Reference",
+"class": "_GotmAuthLocal",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmAuthLocal.gd"
+}, {
+"base": "Reference",
+"class": "_GotmBlob",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmBlob.gd"
+}, {
+"base": "Reference",
+"class": "_GotmBlobLocal",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmBlobLocal.gd"
+}, {
+"base": "Reference",
+"class": "_GotmContent",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmContent.gd"
+}, {
+"base": "Reference",
+"class": "_GotmContentLocal",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmContentLocal.gd"
+}, {
+"base": "Reference",
+"class": "_GotmDebugImpl",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmDebugImpl.gd"
+}, {
+"base": "Reference",
+"class": "_GotmImpl",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmImpl.gd"
+}, {
+"base": "Reference",
+"class": "_GotmImplUtility",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmImplUtility.gd"
+}, {
+"base": "Reference",
+"class": "_GotmLeaderboard",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmLeaderboard.gd"
+}, {
+"base": "Reference",
+"class": "_GotmMark",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmMark.gd"
+}, {
+"base": "Reference",
+"class": "_GotmMarkLocal",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmMarkLocal.gd"
+}, {
+"base": "Reference",
+"class": "_GotmPeriod",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmPeriod.gd"
+}, {
+"base": "Reference",
+"class": "_GotmQuery",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmQuery.gd"
+}, {
+"base": "Reference",
+"class": "_GotmScore",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmScore.gd"
+}, {
+"base": "Reference",
+"class": "_GotmScoreLocal",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmScoreLocal.gd"
+}, {
+"base": "Reference",
+"class": "_GotmStore",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmStore.gd"
+}, {
+"base": "Reference",
+"class": "_GotmUser",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmUser.gd"
+}, {
+"base": "Reference",
+"class": "_GotmUserLocal",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmUserLocal.gd"
+}, {
+"base": "Reference",
+"class": "_GotmUtility",
+"language": "GDScript",
+"path": "res://gotm/_impl/_GotmUtility.gd"
+}, {
+"base": "Reference",
+"class": "_LocalStore",
+"language": "GDScript",
+"path": "res://gotm/_impl/_LocalStore.gd"
 } ]
 _global_script_class_icons={
 "GotmAuth": "",
@@ -93,13 +203,50 @@ _global_script_class_icons={
 "GotmPeriod": "",
 "GotmQuery": "",
 "GotmScore": "",
-"GotmUser": ""
+"GotmUser": "",
+"_Gotm": "",
+"_GotmAuth": "",
+"_GotmAuthLocal": "",
+"_GotmBlob": "",
+"_GotmBlobLocal": "",
+"_GotmContent": "",
+"_GotmContentLocal": "",
+"_GotmDebugImpl": "",
+"_GotmImpl": "",
+"_GotmImplUtility": "",
+"_GotmLeaderboard": "",
+"_GotmMark": "",
+"_GotmMarkLocal": "",
+"_GotmPeriod": "",
+"_GotmQuery": "",
+"_GotmScore": "",
+"_GotmScoreLocal": "",
+"_GotmStore": "",
+"_GotmUser": "",
+"_GotmUserLocal": "",
+"_GotmUtility": "",
+"_LocalStore": ""
 }
 
 [application]
 
-config/name="tests"
+config/name="GDGotm examples"
 run/main_scene="res://Main.tscn"
+
+[autoload]
+
+Gotm="*res://gotm/Gotm.gd"
+
+[debug]
+
+gdscript/warnings/unused_argument=false
+gdscript/warnings/return_value_discarded=false
+gdscript/warnings/integer_division=false
+
+[display]
+
+window/size/width=1280
+window/size/height=720
 
 [rendering]
 

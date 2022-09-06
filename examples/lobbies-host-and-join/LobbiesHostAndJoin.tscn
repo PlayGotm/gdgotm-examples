@@ -1,15 +1,16 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Root.gd" type="Script" id=1]
+[ext_resource path="res://examples/lobbies-host-and-join/LobbiesHostAndJoin.gd" type="Script" id=1]
 [ext_resource path="res://components/Card/Card.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/fonts/Pacifico-200px.tres" type="DynamicFont" id=3]
 [ext_resource path="res://resources/fonts/RobotoLight-24px.tres" type="DynamicFont" id=4]
 [ext_resource path="res://components/Spinner/Spinner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://components/Game/Game.tscn" type="PackedScene" id=6]
+[ext_resource path="res://examples/lobbies-host-and-join/LobbyEntry.tscn" type="PackedScene" id=6]
 [ext_resource path="res://components/Button/Button.tscn" type="PackedScene" id=7]
 [ext_resource path="res://resources/textures/Refresh.svg" type="Texture" id=8]
-[ext_resource path="res://components/LobbyEntry/LobbyEntry.tscn" type="PackedScene" id=9]
-[ext_resource path="res://components/TextInput/TextInput.tscn" type="PackedScene" id=10]
+[ext_resource path="res://components/TextInput/TextInput.tscn" type="PackedScene" id=9]
+[ext_resource path="res://components/Game/Game.tscn" type="PackedScene" id=10]
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -82,7 +83,7 @@ text = "Lobbies"
 
 [node name="Spinner" parent="Lobbies/List" instance=ExtResource( 5 )]
 
-[node name="LobbyEntry" parent="Lobbies/List" instance=ExtResource( 9 )]
+[node name="LobbyEntry" parent="Lobbies/List" instance=ExtResource( 6 )]
 custom_styles/panel = SubResource( 2 )
 
 [node name="Entries" type="Control" parent="Lobbies/List"]
@@ -108,7 +109,7 @@ anchor_top = 1.0
 margin_top = -88.0
 custom_styles/panel = SubResource( 1 )
 
-[node name="Name" parent="Lobbies/Host" instance=ExtResource( 10 )]
+[node name="Name" parent="Lobbies/Host" instance=ExtResource( 9 )]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 15.0
@@ -128,19 +129,9 @@ margin_right = -18.0
 margin_bottom = 28.0
 text = "Host"
 
-[node name="Label" type="Label" parent="Lobbies"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -34.0
-custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "gotm.io"
-align = 1
-valign = 1
-
-[node name="Game" parent="." instance=ExtResource( 6 )]
+[node name="Game" parent="." instance=ExtResource( 10 )]
 visible = false
+
 [connection signal="selected" from="Lobbies/List/LobbyEntry" to="." method="_on_LobbyEntry_selected"]
 [connection signal="clicked" from="Lobbies/List/Refresh" to="." method="_on_Refresh_clicked"]
 [connection signal="clicked" from="Lobbies/Host/Host" to="." method="_on_Host_clicked"]

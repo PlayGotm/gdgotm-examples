@@ -1,10 +1,9 @@
 extends Control
 
-signal selected(lobby)
+const Utility := preload("res://examples/lobbies-fetch/Utility.gd")
+
 
 var _lobby
-
-
 
 
 func set_lobby(lobby: GotmLobby):

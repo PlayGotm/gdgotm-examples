@@ -1,5 +1,8 @@
 extends Control
 
+
+const Utility := preload("res://examples/lobbies-fetch/Utility.gd")
+
 onready var lobby_template = $Lobbies/LobbyTemplate
 onready var lobby_list = $Lobbies/List
 onready var spinner = $Lobbies/Spinner

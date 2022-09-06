@@ -1,21 +1,21 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://Root.gd" type="Script" id=1]
+[ext_resource path="res://examples/lobbies-fetch/LobbiesFetch.gd" type="Script" id=1]
 [ext_resource path="res://components/Card/Card.tscn" type="PackedScene" id=2]
-[ext_resource path="res://resources/Map.svg" type="Texture" id=3]
+[ext_resource path="res://resources/textures/Map.svg" type="Texture" id=3]
 [ext_resource path="res://resources/fonts/RobotoLight-24px.tres" type="DynamicFont" id=4]
 [ext_resource path="res://components/ExclusiveButton/ExclusiveButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://components/Button/Button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://components/Button/UnfilledLeft.tres" type="StyleBox" id=7]
 [ext_resource path="res://components/Button/UnfilledRight.tres" type="StyleBox" id=8]
-[ext_resource path="res://resources/Speed.svg" type="Texture" id=9]
+[ext_resource path="res://resources/textures/Speed.svg" type="Texture" id=9]
 [ext_resource path="res://components/Button/UnfilledCenter.tres" type="StyleBox" id=10]
-[ext_resource path="res://resources/Sort.svg" type="Texture" id=11]
+[ext_resource path="res://resources/textures/Sort.svg" type="Texture" id=11]
 [ext_resource path="res://components/Button/FilledLeft.tres" type="StyleBox" id=12]
 [ext_resource path="res://components/TextInput/TextInput.tscn" type="PackedScene" id=13]
 [ext_resource path="res://components/Spinner/Spinner.tscn" type="PackedScene" id=14]
-[ext_resource path="res://components/Lobby/Lobby.tscn" type="PackedScene" id=15]
-[ext_resource path="res://resources/Refresh.svg" type="Texture" id=16]
+[ext_resource path="res://examples/lobbies-fetch/Lobby.tscn" type="PackedScene" id=15]
+[ext_resource path="res://resources/textures/Refresh.svg" type="Texture" id=16]
 [ext_resource path="res://resources/fonts/RobotoLight-32px.tres" type="DynamicFont" id=17]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -49,7 +49,9 @@ anchor_bottom = 1.0
 color = Color( 0.890196, 0.890196, 0.890196, 1 )
 
 [node name="Options" parent="." instance=ExtResource( 2 )]
-margin_bottom = -330.0
+editor/display_folded = true
+anchor_bottom = 0.0
+margin_bottom = 300.0
 
 [node name="Map" type="Control" parent="Options"]
 margin_left = 15.0
@@ -233,11 +235,10 @@ placeholder_text = "Search by name..."
 
 [node name="Lobbies" type="Panel" parent="."]
 anchor_right = 1.0
-anchor_bottom = 1.0
 margin_left = 10.0
-margin_top = 319.0
+margin_top = 310.0
 margin_right = -10.0
-margin_bottom = -104.0
+margin_bottom = 520.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="Spinner" parent="Lobbies" instance=ExtResource( 14 )]
@@ -319,18 +320,6 @@ margin_top = -32.357
 margin_right = -20.0
 margin_bottom = 27.643
 text = ">"
-
-[node name="Footer" type="Label" parent="."]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -38.1664
-margin_bottom = -1.16638
-custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "gotm.io"
-align = 1
-valign = 1
 
 [connection signal="selection_changed" from="Options/Map/Map" to="." method="_on_Map_selection_changed"]
 [connection signal="selection_changed" from="Options/Difficulty/Difficulty" to="." method="_on_Difficulty_selection_changed"]

@@ -1,13 +1,10 @@
 extends Node
+#warnings-disable
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+#	get_tree().change_scene("res://examples/lobbies-fetch/LobbiesFetch.tscn")
+#	get_tree().change_scene("res://examples/lobbies-host-and-join/LobbiesHostAndJoin.tscn")
+#	get_tree().change_scene("res://examples/multiplayer/Multiplayer.tscn")
+	get_tree().change_scene("res://tests/Tests.tscn")
+	return
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

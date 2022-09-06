@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Speed.svg-2dab54c29c93822261b547ba6f9899d5.stex"
+path="res://.import/Speed.svg-28dba26eb6858fa725d2639e5700f2e3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Speed.svg"
-dest_files=[ "res://.import/Speed.svg-2dab54c29c93822261b547ba6f9899d5.stex" ]
+source_file="res://resources/textures/Speed.svg"
+dest_files=[ "res://.import/Speed.svg-28dba26eb6858fa725d2639e5700f2e3.stex" ]
 
 [params]
 

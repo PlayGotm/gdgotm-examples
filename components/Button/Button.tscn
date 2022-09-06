@@ -37,6 +37,7 @@ margin_right = 18.0
 margin_bottom = 18.0
 expand = true
 stretch_mode = 5
+
 [connection signal="gui_input" from="." to="." method="_on_Button_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_Button_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Button_mouse_exited"]

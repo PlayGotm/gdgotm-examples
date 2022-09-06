@@ -18,7 +18,7 @@ func host():
 
 func join():
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client(Gotm.lobby.host.address, PORT)
+	peer.create_client("127.0.0.1", PORT)
 	get_tree().set_network_peer(peer)
 	
 	$Spinner.show()

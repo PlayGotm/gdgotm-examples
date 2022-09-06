@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Refresh.svg-cb3a25237d3b58acaf5c2bfcc4b64527.stex"
+path="res://.import/Refresh.svg-fd9c78648b688461529c81b37bb60288.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Refresh.svg"
-dest_files=[ "res://.import/Refresh.svg-cb3a25237d3b58acaf5c2bfcc4b64527.stex" ]
+source_file="res://resources/textures/Refresh.svg"
+dest_files=[ "res://.import/Refresh.svg-fd9c78648b688461529c81b37bb60288.stex" ]
 
 [params]
 

@@ -17,8 +17,6 @@ script = ExtResource( 2 )
 modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 323.0
-margin_bottom = 56.0
 rect_pivot_offset = Vector2( 161.5, 28 )
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -39,7 +37,6 @@ margin_right = 18.0
 margin_bottom = 18.0
 expand = true
 stretch_mode = 5
-
 [connection signal="gui_input" from="." to="." method="_on_Button_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_Button_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Button_mouse_exited"]

@@ -1,0 +1,108 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "GotmAuth",
+"language": "GDScript",
+"path": "res://gotm/GotmAuth.gd"
+}, {
+"base": "Reference",
+"class": "GotmBlob",
+"language": "GDScript",
+"path": "res://gotm/GotmBlob.gd"
+}, {
+"base": "Reference",
+"class": "GotmConfig",
+"language": "GDScript",
+"path": "res://gotm/GotmConfig.gd"
+}, {
+"base": "Reference",
+"class": "GotmContent",
+"language": "GDScript",
+"path": "res://gotm/GotmContent.gd"
+}, {
+"base": "Reference",
+"class": "GotmDebug",
+"language": "GDScript",
+"path": "res://gotm/GotmDebug.gd"
+}, {
+"base": "Reference",
+"class": "GotmFile",
+"language": "GDScript",
+"path": "res://gotm/GotmFile.gd"
+}, {
+"base": "Reference",
+"class": "GotmLeaderboard",
+"language": "GDScript",
+"path": "res://gotm/GotmLeaderboard.gd"
+}, {
+"base": "Reference",
+"class": "GotmLobby",
+"language": "GDScript",
+"path": "res://gotm/GotmLobby.gd"
+}, {
+"base": "Reference",
+"class": "GotmLobbyFetch",
+"language": "GDScript",
+"path": "res://gotm/GotmLobbyFetch.gd"
+}, {
+"base": "Reference",
+"class": "GotmMark",
+"language": "GDScript",
+"path": "res://gotm/GotmMark.gd"
+}, {
+"base": "Reference",
+"class": "GotmPeriod",
+"language": "GDScript",
+"path": "res://gotm/GotmPeriod.gd"
+}, {
+"base": "Reference",
+"class": "GotmQuery",
+"language": "GDScript",
+"path": "res://gotm/GotmQuery.gd"
+}, {
+"base": "Reference",
+"class": "GotmScore",
+"language": "GDScript",
+"path": "res://gotm/GotmScore.gd"
+}, {
+"base": "Reference",
+"class": "GotmUser",
+"language": "GDScript",
+"path": "res://gotm/GotmUser.gd"
+} ]
+_global_script_class_icons={
+"GotmAuth": "",
+"GotmBlob": "",
+"GotmConfig": "",
+"GotmContent": "",
+"GotmDebug": "",
+"GotmFile": "",
+"GotmLeaderboard": "",
+"GotmLobby": "",
+"GotmLobbyFetch": "",
+"GotmMark": "",
+"GotmPeriod": "",
+"GotmQuery": "",
+"GotmScore": "",
+"GotmUser": ""
+}
+
+[application]
+
+config/name="tests"
+run/main_scene="res://Main.tscn"
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false

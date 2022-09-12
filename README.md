@@ -3,13 +3,9 @@
   <br/>
   Explore Godot game examples using Gotm APIs
   <br />
-  <a href="https://gotm.io/docs">Learn more</a>
+  <a href="https://gotm.io/docs/gdgotm">Learn more</a>
 </p>
 
 _Supports versions 3.2.0 and newer._
 
-# Guides
-
-- [Leaderboard](https://gotm.io/docs/leaderboard)
-- [Lobby](https://gotm.io/docs/lobby)
-- [Multiplayer](https://gotm.io/docs/multiplayer)
+[Documentation and guides](https://gotm.io/docs/gdgotm)

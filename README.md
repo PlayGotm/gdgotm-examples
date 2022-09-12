@@ -7,3 +7,5 @@
 </p>
 
 _Supports versions 3.2.0 and newer._
+
+[Download latest version](https://github.com/PlayGotm/gdgotm-examples/archive/refs/heads/master.zip)

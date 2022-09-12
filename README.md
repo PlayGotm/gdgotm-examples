@@ -3,9 +3,7 @@
   <br/>
   Explore Godot game examples using Gotm APIs
   <br />
-  <a href="https://gotm.io/docs/gdgotm">Learn more</a>
+  <a href="https://gotm.io/docs/gdgotm">Documentation and guides</a>
 </p>
 
 _Supports versions 3.2.0 and newer._
-
-[Documentation and guides](https://gotm.io/docs/gdgotm)

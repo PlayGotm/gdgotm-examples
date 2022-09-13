@@ -20,6 +20,22 @@ static func all():
 	# Clear existing contents so the test runs the same every time.
 	yield(_clear_contents(), "completed")
 	
+	# Test serialization for variants
+	for value in ["herpderp", {"herp": "derp"}, ["herp", "derp"]]:
+		var content = yield(GotmContent.create(value), "completed")
+		var loaded_value = yield(GotmContent.get_variant(content), "completed")
+		TestUtility.assert_equality(to_json(value), to_json(loaded_value))
+		yield(GotmContent.delete(content), "completed")
+	
+	# Test serialization for node
+	var control := Control.new()
+	control.rect_position.x = 1337
+	var node_content = yield(GotmContent.create(control), "completed")
+	var loaded_node = yield(GotmContent.get_node(node_content), "completed")
+	TestUtility.assert_equality(loaded_node.rect_position.x, 1337)
+	TestUtility.assert_equality(loaded_node is Control, true)
+	yield(GotmContent.delete(node_content), "completed")
+	
 	var directory = "my_directory"
 	var extension = "txt"
 	var basename = "my_basename" + "." + extension

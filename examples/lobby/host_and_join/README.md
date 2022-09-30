@@ -1,1 +1,1 @@
-[Guide](https://gotm.io/docs/lobbies)
+[Guide](https://gotm.io/docs/lobby)

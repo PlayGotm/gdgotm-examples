@@ -1,13 +1,13 @@
-tool
+@tool
 extends Panel
 
 signal clicked(instance)
 
-export(String) var text = "Text" setget set_text
-export(bool) var filled = false setget set_filled
-export(Texture) var texture = null setget set_texture
-export(int, "32px", "64px") var size = 0 setget _set_size
-export(int, "None", "Left", "Center", "Right") var group = 0 setget set_group
+@export var text: String = "Text": set = set_text
+@export var filled: bool = false: set = set_filled
+@export var texture: Texture2D = null: set = set_texture
+@export var font_size := 0: set = _set_font_size
+@export var group = 0: set = set_group
 
 var _unfilled_stylebox = preload("Unfilled.tres")
 var _filled_stylebox = preload("Filled.tres")
@@ -32,22 +32,23 @@ func set_group(new_group):
 		_filled_stylebox = preload("FilledRight.tres")
 	set_filled(filled)
 
-func _set_size(new_size):
-	size = new_size
+func _set_font_size(new_size):
+	font_size = new_size
+
 	var font
-	if size == 0:
+	if font_size == 0:
 		font = preload("res://resources/fonts/RobotoLight-32px.tres")
 	else:
 		font = preload("res://resources/fonts/RobotoLight-64px.tres")
 	
-	$Label.set("custom_fonts/font", font)
+	$Label.set("theme_override_fonts/font", font)
 	set_filled(filled)
 	call_deferred("_update_label_size")
 
 
 func _update_label_size():
-	$Label.rect_size = rect_size
-	$Label.rect_pivot_offset = rect_size / 2.0
+	$Label.set_deferred("size", size)
+	$Label.pivot_offset = size / 2.0
 
 
 func set_text(new_text):
@@ -57,11 +58,11 @@ func set_text(new_text):
 func set_texture(new_texture):
 	texture = new_texture
 	if texture:
-		$Texture.texture = texture
-		$Texture.show()
+		$Texture2D.texture = texture
+		$Texture2D.show()
 		$Label.hide()
 	else:
-		$Texture.hide()
+		$Texture2D.hide()
 		$Label.show()
 	
 
@@ -70,34 +71,34 @@ func set_filled(new_filled):
 
 	
 	if filled:
-		$Label.modulate = Color.white
-		$Texture.modulate = Color.white
-		set("custom_styles/panel", _filled_stylebox)
+		$Label.modulate = Color.WHITE
+		$Texture2D.modulate = Color.WHITE
+		set("theme_override_styles/panel", _filled_stylebox)
 	else:
-		$Label.modulate = Color.black
-		$Texture.modulate = Color.black
-		set("custom_styles/panel", _unfilled_stylebox)
+		$Label.modulate = Color.BLACK
+		$Texture2D.modulate = Color.BLACK
+		set("theme_override_styles/panel", _unfilled_stylebox)
 		
 
 
 func _on_Button_mouse_entered():
 	if filled:
-		modulate = Color.white * 1.05
+		modulate = Color.WHITE * 1.05
 	else:
-		modulate = Color.white * 0.95
+		modulate = Color.WHITE * 0.95
 		
 
 
 func _on_Button_mouse_exited():
-	modulate = Color.white
+	modulate = Color.WHITE
 
 func _on_Button_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
 			if filled:
-				modulate = Color.white * 1.3
+				modulate = Color.WHITE * 1.3
 			else:
-				modulate = Color.white * 0.7
+				modulate = Color.WHITE * 0.7
 		else:
 			_on_Button_mouse_entered()
 			emit_signal("clicked", self)

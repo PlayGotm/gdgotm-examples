@@ -3,7 +3,7 @@
 [ext_resource path="res://components/ExclusiveButton/ExclusiveButton.gd" type="Script" id=1]
 
 [node name="ExclusiveButton" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource( 1 )
 

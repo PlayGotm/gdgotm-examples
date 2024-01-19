@@ -1,10 +1,10 @@
-tool
+@tool
 extends Control
 
 signal selection_changed(text)
 
-export(bool) var allow_empty = true setget set_allow_empty
-export(int) var selected_index = -1 setget set_selected_index
+@export var allow_empty: bool = true: set = set_allow_empty
+@export var selected_index: int = -1: set = set_selected_index
 
 
 func _ready():
@@ -32,7 +32,7 @@ func set_allow_empty(new):
 
 
 func add_child(node, legible_unique_name = false):
-	.add_child(node, legible_unique_name)
+	super.add_child(node, legible_unique_name)
 	_init_children()
 
 func _init_children():
@@ -47,8 +47,8 @@ func _init_children():
 		else:
 			button.group = 3
 		
-		if not button.is_connected("clicked", self, "_button_clicked"):
-			button.connect("clicked", self, "_button_clicked")
+		if not button.is_connected("clicked", Callable(self, "_button_clicked")):
+			button.connect("clicked", Callable(self, "_button_clicked"))
 
 
 func _button_clicked(instance):
@@ -61,9 +61,9 @@ func _button_clicked(instance):
 		
 	if instance.filled:
 		set_selected_index(instance.get_index())
-		if not Engine.editor_hint:
+		if not Engine.is_editor_hint():
 			emit_signal("selection_changed", instance.text)
 	else:
 		set_selected_index(-1)
-		if not Engine.editor_hint:
+		if not Engine.is_editor_hint():
 			emit_signal("selection_changed", null)

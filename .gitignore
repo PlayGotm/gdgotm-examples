@@ -3,3 +3,4 @@ build
 export_presets.cfg
 *.pck
 *.exe
+.godot/

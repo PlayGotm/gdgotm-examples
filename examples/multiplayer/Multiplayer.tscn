@@ -1,63 +1,89 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://y36x5f23ubfy"]
 
-[ext_resource path="res://examples/multiplayer/Root.gd" type="Script" id=1]
-[ext_resource path="res://resources/fonts/Pacifico-200px.tres" type="DynamicFont" id=2]
-[ext_resource path="res://components/Button/Button.tscn" type="PackedScene" id=3]
-[ext_resource path="res://components/Game/Game.tscn" type="PackedScene" id=4]
+[ext_resource type="Script" path="res://examples/multiplayer/Multiplayer.gd" id="1"]
+[ext_resource type="FontFile" path="res://resources/fonts/Pacifico-200px.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://clkyypjssum55" path="res://components/Button/Button.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://djly8jwwet4nh" path="res://components/Game/Game.tscn" id="4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1s2qy"]
+font = ExtResource("2")
+font_size = 200
+font_color = Color(0.0156863, 0.0156863, 0.0156863, 1)
 
 [node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
 
 [node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Menu" type="Control" parent="."]
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="Menu"]
+layout_mode = 1
+anchors_preset = 13
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -280.0
-margin_top = -340.0
-margin_right = 280.0
-margin_bottom = 12.0
-rect_rotation = -8.04779
-rect_pivot_offset = Vector2( 280, 176 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+anchor_bottom = 1.0
+offset_left = -303.0
+offset_top = -164.0
+offset_right = 250.0
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -6.52071
+pivot_offset = Vector2(280, 176)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2")
 text = "Draw!"
+label_settings = SubResource("LabelSettings_1s2qy")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Host" parent="Menu" instance=ExtResource( 3 )]
+[node name="Host" parent="Menu" instance=ExtResource("3")]
+layout_mode = 0
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -115.5
-margin_top = -37.0
-margin_right = 115.5
-margin_bottom = 37.0
+offset_left = -115.5
+offset_top = -37.0
+offset_right = 115.5
+offset_bottom = 37.0
+grow_horizontal = 1
 text = "Host"
-size = 1
+font_size = 1
 
-[node name="Join" parent="Menu" instance=ExtResource( 3 )]
+[node name="Join" parent="Menu" instance=ExtResource("3")]
+layout_mode = 0
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -115.5
-margin_top = 60.0
-margin_right = 115.5
-margin_bottom = 134.0
+offset_left = -115.5
+offset_top = 60.0
+offset_right = 115.5
+offset_bottom = 134.0
+grow_horizontal = 1
 text = "Join"
-size = 1
+font_size = 1
 
-[node name="Game" parent="." instance=ExtResource( 4 )]
+[node name="Game" parent="." instance=ExtResource("4")]
+visible = false
+layout_mode = 1
 
 [connection signal="clicked" from="Menu/Host" to="." method="_on_Host_clicked"]
 [connection signal="clicked" from="Menu/Join" to="." method="_on_Join_clicked"]
+[connection signal="link_copied" from="Game" to="." method="_on_game_link_copied"]

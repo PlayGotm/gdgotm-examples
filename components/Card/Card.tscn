@@ -10,9 +10,9 @@ corner_radius_bottom_left = 32
 [node name="Card" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
-custom_styles/panel = SubResource( 1 )
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+theme_override_styles/panel = SubResource( 1 )
 

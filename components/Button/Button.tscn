@@ -1,43 +1,49 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://clkyypjssum55"]
 
-[ext_resource path="res://components/Button/Unfilled.tres" type="StyleBox" id=1]
-[ext_resource path="res://components/Button/Button.gd" type="Script" id=2]
-[ext_resource path="res://resources/fonts/RobotoLight-32px.tres" type="DynamicFont" id=3]
+[ext_resource type="StyleBox" path="res://components/Button/Unfilled.tres" id="1"]
+[ext_resource type="Script" path="res://components/Button/Button.gd" id="2"]
+[ext_resource type="FontFile" path="res://resources/fonts/RobotoLight-32px.tres" id="3"]
 
 [node name="Button" type="Panel"]
+anchors_preset = 10
 anchor_right = 1.0
-margin_left = 310.0
-margin_top = 10.0
-margin_right = -7.0
-margin_bottom = 66.0
-custom_styles/panel = ExtResource( 1 )
-script = ExtResource( 2 )
+offset_left = 310.0
+offset_top = 10.0
+offset_right = -7.0
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_styles/panel = ExtResource("1")
+script = ExtResource("2")
 
 [node name="Label" type="Label" parent="."]
-modulate = Color( 0, 0, 0, 1 )
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 481.5, 28 )
-custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+offset_right = 963.0
+offset_bottom = 56.0
+pivot_offset = Vector2(481.5, 28)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3")
 text = "Text"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-
-[node name="Texture" type="TextureRect" parent="."]
+[node name="Texture2D" type="TextureRect" parent="."]
 visible = false
-modulate = Color( 0, 0, 0, 1 )
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -18.0
-margin_top = -18.0
-margin_right = 18.0
-margin_bottom = 18.0
-expand = true
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+expand_mode = 1
 stretch_mode = 5
+
 [connection signal="gui_input" from="." to="." method="_on_Button_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_Button_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Button_mouse_exited"]

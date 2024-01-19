@@ -1,9 +1,9 @@
-tool
+@tool
 extends Panel
 
 signal text_changed(new_text)
 
-export(String) var placeholder_text = "" setget set_placeholder_text
+@export var placeholder_text: String = "": set = set_placeholder_text
 
 
 func _on_Input_text_changed(new_text):

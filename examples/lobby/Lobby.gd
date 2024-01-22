@@ -18,7 +18,10 @@ func _on_LobbyEntry_selected(lobby: GotmLobby):
 		push_error("Failed to connect to lobby '" + lobby.name + "'!")
 		$Lobbies.show()
 		$Game.hide()
-	
+	else:
+		await $Game.disconnected
+		$Lobbies.show()
+		$Game.hide()
 
 func _on_Host_clicked(instance):
 	$Lobbies.hide()
@@ -41,7 +44,12 @@ func _on_Refresh_clicked(instance):
 	for child in $Lobbies/List/Entries.get_children():
 		child.queue_free()
 	
+	var pre := Time.get_ticks_msec()
 	var lobbies := await GotmLobby.list()
+	var fetch_time := Time.get_ticks_msec() - pre
+	if fetch_time < 1000:
+		await get_tree().create_timer(1.0 - (float(fetch_time) / 1000.)).timeout
+		
 	
 	for i in lobbies.size():
 		var lobby = lobbies[i]

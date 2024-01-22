@@ -17,11 +17,11 @@ const OPTIONS = {
 
 
 func _ready():
-	Gotm.project_key = "authenticators/ccG2PZyIak36FjT2COCE"
+	Gotm.project_key = ""
 
 	for option_key in OPTIONS:
 		if OS.has_feature("option_" + option_key):
-			get_tree().change_scene(OPTIONS[option_key].path)
+			get_tree().change_scene_to_file(OPTIONS[option_key].path)
 			return
 	
 	var y = 0

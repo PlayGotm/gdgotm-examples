@@ -25,11 +25,10 @@ func _on_Join_clicked(instance):
 			address = arg.substr("--address=".length())
 			break
 	
-	address = await GotmMultiplayer.get_address()
 	if !address:
 		push_error("No server address provided!")
 		return
-		
+	
 	$Menu.hide()
 	$Game.show()
 	var success = await $Game.join(address)
@@ -37,7 +36,10 @@ func _on_Join_clicked(instance):
 		push_error("Failed to join server with address '" + address + "'!")
 		$Menu.show()
 		$Game.hide()
-
+	else:
+		await $Game.disconnected
+		$Menu.show()
+		$Game.hide()
 
 func _on_game_link_copied(address: String):
 		DisplayServer.clipboard_set("https://gotm.io/gdgotm-examples/multiplayer?appArguments=--address=" + address)

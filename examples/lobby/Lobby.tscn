@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" path="res://components/Card/Card.tscn" id="2"]
 [ext_resource type="FontFile" path="res://resources/fonts/Pacifico-200px.tres" id="3"]
 [ext_resource type="FontFile" path="res://resources/fonts/RobotoLight-24px.tres" id="4"]
-[ext_resource type="PackedScene" path="res://components/Spinner/Spinner.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://ddu26521qqsjd" path="res://components/Spinner/Spinner.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://examples/lobby/LobbyEntry.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://clkyypjssum55" path="res://components/Button/Button.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://cpwn237nc73jt" path="res://resources/textures/Refresh.svg" id="8"]
@@ -56,13 +56,14 @@ anchor_bottom = 1.0
 color = Color(0.882353, 0.882353, 0.882353, 1)
 
 [node name="List" parent="Lobbies" instance=ExtResource("2")]
-layout_mode = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
+layout_mode = 1
+anchors_preset = 15
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
-offset_bottom = -101.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("1")
 
 [node name="GameTitle" type="Label" parent="Lobbies/List"]
@@ -82,33 +83,30 @@ theme_override_fonts/font = ExtResource("3")
 text = "Draw!"
 
 [node name="Title" type="Label" parent="Lobbies/List"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 10.0
-offset_right = 96.0
-offset_bottom = 39.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.0
+offset_right = 38.0
+offset_bottom = 29.0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4")
 text = "Lobbies"
 
 [node name="Spinner" parent="Lobbies/List" instance=ExtResource("5")]
-layout_mode = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 76.0
-offset_bottom = 76.0
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="LobbyEntry" parent="Lobbies/List" instance=ExtResource("6")]
 layout_mode = 0
 anchor_right = 0.0
 offset_left = 0.0
 offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 76.0
+offset_right = 1280.0
+offset_bottom = 83.0
 theme_override_styles/panel = SubResource("2")
 
 [node name="Entries" type="Control" parent="Lobbies/List"]
@@ -118,29 +116,18 @@ anchor_bottom = 1.0
 offset_left = 1.56827
 offset_right = 1.5683
 
-[node name="Refresh" parent="Lobbies/List" instance=ExtResource("7")]
-layout_mode = 0
-anchors_preset = 0
+[node name="Host" parent="Lobbies" instance=ExtResource("2")]
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -28.0
-offset_top = -69.0
-offset_right = 28.0
-offset_bottom = -13.0005
-grow_horizontal = 1
-pivot_offset = Vector2(28, 28)
-texture = ExtResource("8")
-
-[node name="Host" parent="Lobbies" instance=ExtResource("2")]
-layout_mode = 0
-anchor_top = 1.0
-anchor_right = 0.0
 offset_left = 0.0
 offset_top = -88.0
 offset_right = 0.0
 offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_styles/panel = SubResource("1")
 
 [node name="Name" parent="Lobbies/Host" instance=ExtResource("9")]
@@ -167,14 +154,25 @@ offset_bottom = 28.0
 grow_horizontal = 1
 text = "Host"
 
+[node name="Refresh" parent="Lobbies/Host" instance=ExtResource("7")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -30.0
+offset_right = -188.0
+offset_bottom = 25.9995
+grow_horizontal = 1
+grow_vertical = 2
+pivot_offset = Vector2(28, 28)
+texture = ExtResource("8")
+
 [node name="Game" parent="." instance=ExtResource("10")]
 visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
 
 [connection signal="selected" from="Lobbies/List/LobbyEntry" to="." method="_on_LobbyEntry_selected"]
-[connection signal="clicked" from="Lobbies/List/Refresh" to="." method="_on_Refresh_clicked"]
 [connection signal="clicked" from="Lobbies/Host/Host" to="." method="_on_Host_clicked"]
+[connection signal="clicked" from="Lobbies/Host/Refresh" to="." method="_on_Refresh_clicked"]

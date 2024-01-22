@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://djly8jwwet4nh"]
 
 [ext_resource type="Script" path="res://components/Game/Game.gd" id="1"]
-[ext_resource type="PackedScene" path="res://components/Spinner/Spinner.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://ddu26521qqsjd" path="res://components/Spinner/Spinner.tscn" id="2"]
 [ext_resource type="TileSet" uid="uid://d1w2w3e7rsp10" path="res://components/Game/TileSet.tres" id="3"]
 [ext_resource type="FontFile" path="res://resources/fonts/RobotoLight-32px.tres" id="4"]
 [ext_resource type="PackedScene" uid="uid://clkyypjssum55" path="res://components/Button/Button.tscn" id="5"]
@@ -22,15 +22,10 @@ anchor_bottom = 1.0
 
 [node name="Spinner" parent="." instance=ExtResource("2")]
 visible = false
-layout_mode = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 76.0
-offset_bottom = 76.0
+layout_mode = 1
+anchors_preset = 8
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Canvas" type="TileMap" parent="."]
 scale = Vector2(2, 2)

@@ -6,6 +6,7 @@ var _color: int
 
 signal link_copied(address: String)
 signal client_connected(did_connect: bool)
+signal disconnected(did_connect: bool)
 
 func host() -> bool:
 	$Spinner.show()
@@ -47,7 +48,9 @@ func join(address: String) -> bool:
 	multiplayer.connection_failed.connect(func():
 		client_connected.emit(false)
 	, CONNECT_ONE_SHOT)
-	
+	multiplayer.server_disconnected.connect(func():
+		disconnected.emit()
+	)
 	return await client_connected
 
 

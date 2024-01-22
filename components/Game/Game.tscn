@@ -23,7 +23,6 @@ anchor_bottom = 1.0
 [node name="Spinner" parent="." instance=ExtResource("2")]
 visible = false
 layout_mode = 1
-anchors_preset = 8
 grow_horizontal = 2
 grow_vertical = 2
 

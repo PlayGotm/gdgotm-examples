@@ -118,40 +118,41 @@ offset_right = 1.5683
 
 [node name="Host" parent="Lobbies" instance=ExtResource("2")]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
 offset_left = 0.0
-offset_top = -88.0
+offset_top = -36.0
 offset_right = 0.0
-offset_bottom = 0.0
+offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("1")
 
 [node name="Name" parent="Lobbies/Host" instance=ExtResource("9")]
-layout_mode = 0
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 15.0
-offset_top = -25.0
-offset_right = 429.0
-offset_bottom = 25.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 250.0
+offset_top = -26.0
+offset_right = -26.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("3")
 placeholder_text = "Lobby name..."
 
 [node name="Host" parent="Lobbies/Host" instance=ExtResource("7")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 1.0
+layout_mode = 1
+anchors_preset = 4
 anchor_top = 0.5
+anchor_right = 0.0
 anchor_bottom = 0.5
-offset_left = -172.0
+offset_left = 65.0
 offset_top = -28.0
-offset_right = -18.0
+offset_right = 219.0
 offset_bottom = 28.0
 grow_horizontal = 1
+grow_vertical = 2
 text = "Host"
 
 [node name="Refresh" parent="Lobbies/Host" instance=ExtResource("7")]
@@ -160,10 +161,10 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_right = 0.0
 anchor_bottom = 0.5
-offset_left = -244.0
-offset_top = -30.0
-offset_right = -188.0
-offset_bottom = 25.9995
+offset_left = 0.0
+offset_top = -27.9998
+offset_right = 56.0
+offset_bottom = 27.9998
 grow_horizontal = 1
 grow_vertical = 2
 pivot_offset = Vector2(28, 28)
